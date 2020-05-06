@@ -7,7 +7,7 @@ const Footer = ({ author, source }) => (
   <footer className="py-1x border-t">
     <p className="font-display text-sm text-center">
       {author} © 2016 - Present |{" "}
-      <ExternalLink to={source}>Source</ExternalLink>
+      <ExternalLink href={source}>Source</ExternalLink>
     </p>
   </footer>
 );

@@ -15,7 +15,7 @@ import { Metadata } from "@/types/site-metadata";
 const Layout = ({ children, siteMetadata }) => {
   return (
     <>
-      <Header siteTitle={siteMetadata.title} />
+      <Header siteMetadata={siteMetadata} />
       <div className="container w-full max-w-outer min-h-screen pt-16 sm:pt-20 px-1x flex flex-col justify-between">
         <main className="w-full flex justify-center">{children}</main>
         <Footer
