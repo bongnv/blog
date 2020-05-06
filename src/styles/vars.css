@@ -1,0 +1,11 @@
+:root {
+  --color-background: theme('colors.white');
+  --color-foreground: theme('colors.gray.800');
+  --color-primary: theme('colors.indigo.600');
+}
+
+html[lights-out] {
+  --color-background: theme('colors.gray.900');
+  --color-foreground: theme('colors.gray.100');
+  --color-primary: theme('colors.indigo.500');
+}

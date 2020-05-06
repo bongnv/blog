@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout siteMetadata={data.site.siteMetadata}>
-      <SEO title="Home" />
+      <SEO title="About" />
       <article
         className="w-full max-w-2xl content"
         dangerouslySetInnerHTML={{ __html: post.html }}

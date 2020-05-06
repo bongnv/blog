@@ -1,0 +1,57 @@
+* {
+  transition-property: color, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+.content h1 {
+  @apply text-4xl text-foreground my-2x font-extrabold font-display;
+}
+
+.content h2 {
+  @apply leading-8 text-2xl text-foreground mb-1x mt-6 pb-2 font-bold font-display border-b;
+}
+
+.content h3 {
+  @apply leading-6 text-xl text-foreground mb-1x mt-6 font-bold font-display;
+}
+
+.content h4 {
+  @apply leading-6 text-lg text-foreground mb-1x mt-6 font-semibold font-display;
+}
+
+.content h5, h6 {
+  @apply leading-6 text-lg text-foreground mb-1x mt-6 font-medium font-display;
+}
+
+.content p {
+  @apply leading-6 text-base text-foreground font-body mb-1x;
+}
+
+.content li {
+  @apply list-disc;
+}
+
+.content ul {
+  @apply pl-8 mb-1x list-disc;
+}
+
+.content a {
+  @apply text-primary;
+}
+
+.content a:hover {
+  @apply underline;
+}
+
+.content .octicon {
+  @apply inline-block ml-1 invisible fill-current;
+}
+
+.content h2:hover .octicon {
+  @apply visible;
+}
+
+.content h3:hover .octicon {
+  @apply visible;
+}

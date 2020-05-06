@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./vars.css";
+@import "./base.css";
+@import "./effects.css";
