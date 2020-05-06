@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => {
   const post = data.markdownRemark;
 
   return (
-    <Layout>
+    <Layout siteMetadata={data.site.siteMetadata}>
       <SEO title="Home" />
       <article
         className="w-full max-w-2xl content"
@@ -42,6 +42,7 @@ export const pageQuery = graphql`
         links {
           linkedin
           github
+          source
         }
       }
     }

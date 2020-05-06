@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 export const Links = PropTypes.shape({
   linkedin: PropTypes.string.isRequired,
   github: PropTypes.string.isRequired,
+  source: PropTypes.string,
 });
 
 export const Metadata = PropTypes.shape({

@@ -7,6 +7,7 @@ module.exports = {
     links: {
       linkedin: "https://linkedin.com/in/bongnv",
       github: "https://github.com/bongnv",
+      source: "https://github.com/bongnv",
     },
     siteUrl: "https://bongnv.com",
   },

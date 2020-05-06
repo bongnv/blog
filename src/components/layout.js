@@ -7,37 +7,21 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
-import "./layout.css";
+import Footer from "./footer";
+import { Metadata } from "@/types/site-metadata";
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
+const Layout = ({ children, siteMetadata }) => {
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: "0 auto",
-          maxWidth: 960,
-          padding: "0 1.0875rem 1.45rem",
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with{" "}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+      <Header siteTitle={siteMetadata.title} />
+      <div className="container w-full max-w-outer min-h-screen pt-16 sm:pt-20 px-1x flex flex-col justify-between">
+        <main className="w-full flex justify-center">{children}</main>
+        <Footer
+          author={siteMetadata.author}
+          source={siteMetadata.links.source}
+        />
       </div>
     </>
   );
@@ -45,6 +29,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  siteMetadata: Metadata.isRequired,
 };
 
 export default Layout;
