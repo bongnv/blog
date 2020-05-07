@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { Linkedin, GitHub } from "react-feather";
 
 import { Links } from "@/types";
-import ExternalLink from "./external-link";
+import XLink from "./external-link";
 
 interface MobileNavProps {
   links: Links;
@@ -26,12 +26,12 @@ const MobileNav: FC<MobileNavProps> = ({ links }: MobileNavProps) => (
       Blog
     </Link>
     <div className="flex pl-.5x mb-1x mt-1x pt-1x border-t">
-      <ExternalLink href={links.linkedin} className="mr-1x">
+      <XLink to={links.linkedin} className="mr-1x">
         <Linkedin />
-      </ExternalLink>
-      <ExternalLink href={links.github}>
+      </XLink>
+      <XLink to={links.github}>
         <GitHub />
-      </ExternalLink>
+      </XLink>
     </div>
   </nav>
 );

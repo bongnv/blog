@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import ExternalLink from "./external-link";
+import XLink from "./external-link";
 
 interface FooterProps {
   author: string;
@@ -10,8 +10,7 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({ author, source }: FooterProps) => (
   <footer className="py-1x border-t">
     <p className="font-display text-sm text-center">
-      {author} © 2016 - Present |{" "}
-      <ExternalLink href={source}>Source</ExternalLink>
+      {author} © 2016 - Present | <XLink to={source}>Source</XLink>
     </p>
   </footer>
 );

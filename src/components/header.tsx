@@ -12,7 +12,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ siteMetadata }: HeaderProps) => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const handleClick = () => setMenuVisible(!menuVisible);
+  const handleClick = (): void => setMenuVisible(!menuVisible);
   const BtnIcon = menuVisible ? X : Menu;
 
   return (

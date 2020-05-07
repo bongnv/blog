@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { Linkedin, GitHub } from "react-feather";
 
 import { Links } from "@/types";
-import ExternalLink from "./external-link";
+import XLink from "./external-link";
 
 interface NavProps {
   links: Links;
@@ -21,12 +21,12 @@ const Nav: FC<NavProps> = ({ links }: NavProps) => (
     >
       Blog
     </Link>
-    <ExternalLink href={links.linkedin} className="mr-1x">
+    <XLink to={links.linkedin} className="mr-1x">
       <Linkedin />
-    </ExternalLink>
-    <ExternalLink href={links.github}>
+    </XLink>
+    <XLink to={links.github}>
       <GitHub />
-    </ExternalLink>
+    </XLink>
   </nav>
 );
 
