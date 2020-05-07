@@ -2,6 +2,7 @@
 title: scrollIntoView issue with vue-router
 date: 2020-04-25
 description: An issue with scrollIntoView which I bumped into while playing with GridSome. I fixed it by hacking vue-router initialization.
+published: true
 ---
 
 _Updated (2020-04-30):_

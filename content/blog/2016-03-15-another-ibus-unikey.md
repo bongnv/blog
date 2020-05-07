@@ -1,6 +1,7 @@
 ---
 title: Another ibus-unikey
 date: 2016-03-15
+published: false
 ---
 
 Trong một khoảng thời gian dài, [IBus-Unikey][ibus-unikey-github] (tác giả [Lê Quốc Tuấn](mailto:mr.lequoctuan@gmail.com)) được biết đến như một bộ gõ tốt nhất cho cộng đồng người Việt sử dụng Linux.

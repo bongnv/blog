@@ -46,7 +46,7 @@ export default BlogIndexPage;
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
-      filter: { fields: { isBlog: { eq: true } } }
+      filter: { fields: { isBlog: { eq: true }, isPublished: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {

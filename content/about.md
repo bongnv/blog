@@ -1,5 +1,6 @@
 ---
 title: About
+published: true
 ---
 
 # Hi, I'm Bong

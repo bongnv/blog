@@ -2,7 +2,7 @@
 title: I patched a npm package
 date: 2020-04-30 14:27:00
 description: The post gives a convenient way to patch a npm package for personal usage.
-draft: false
+published: true
 ---
 
 I was using [Gridsome](https://gridsome.org/) to write this blog from Markdown contents. However, the [`transformer-remark`](https://gridsome.org/plugins/@gridsome/transformer-remark) plugin which transforms a Markdown content to a HTML content doesn't have the functionality to generate an excerpt automatically from the content itself. It requires the `excerpt` field to be filled manually in front matter. Plus I wanted it so bad that I couldn't wait for [the PR](https://github.com/gridsome/gridsome/pull/1085) to be merged and published to the npm repository. I then decided to create a patch for it so I can have the feature in my own blog as early as possible.

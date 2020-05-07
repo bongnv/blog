@@ -2,6 +2,7 @@
 title: Releases with Semantic-release
 date: 2020-05-03
 description: I used semantic-release to speed up the handy work when publishing npm packages.
+published: true
 ---
 
 I have been writing a coupe of [NPM packages](https://www.npmjs.com/) recently and publishing those NPM packages was quite manual and repetitive. Including bumping versions, changelog and Github releases, the amount of manual work will cost plenty of time. It could easily take up to 30 minutes to have a nicely published NPM package. I then googled the problem and found [`sementic-release`](https://github.com/semantic-release/semantic-release). The tool is very handy as it provides a bunch of cool features due to its plugins system.
@@ -41,6 +42,7 @@ I updated `scripts` in `package.json` for convenience:
   }
 }
 ```
+
 So I only need `yarn release` to access its commands.
 
 ## Configurations

@@ -31,16 +31,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const edges = result.data.allMarkdownRemark.edges;
-  edges.forEach((edge, index) => {
-    const previous = index === edges.length - 1 ? null : edges[index + 1].node;
-    const next = index === 0 ? null : edges[index - 1].node;
+  edges.forEach((edge) => {
     createPage({
       path: edge.node.fields.slug,
       component: blogPostTemplate,
       context: {
         id: edge.node.id,
-        previous,
-        next,
       },
     });
   });
@@ -50,17 +46,27 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    const slug = createFilePath({ node, getNode });
+    const isBlog = slug.startsWith("/blog/");
+    const isPublished =
+      process.env.NODE_ENV !== "production" || node.frontmatter.published;
+
     createNodeField({
       name: "slug",
       node,
-      value,
+      value: slug,
     });
 
     createNodeField({
       name: "isBlog",
       node,
-      value: value.startsWith("/blog/"),
+      value: isBlog,
+    });
+
+    createNodeField({
+      name: "isPublished",
+      node,
+      value: isPublished,
     });
   }
 };

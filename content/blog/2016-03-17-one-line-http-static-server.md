@@ -2,6 +2,7 @@
 title: "One-line HTTP Static Server"
 date: 2016-03-17
 description: Start a local HTTP static server with one line command.
+published: true
 ---
 
 Today, I have just found this way to share my html document in the fastest way.
