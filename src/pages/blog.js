@@ -5,7 +5,6 @@ import { graphql } from "gatsby";
 import Layout from "@/components/layout";
 import PostCard from "@/components/post-card";
 import SEO from "@/components/seo";
-import { Metadata } from "@/types/site-metadata";
 
 const BlogIndexPage = ({ data }) => {
   const title = "The blog of Bong";
@@ -13,7 +12,7 @@ const BlogIndexPage = ({ data }) => {
     "Hey! I write about my personal experiences and challenges here.";
   const edges = data.allMarkdownRemark.edges;
   return (
-    <Layout siteMetadata={data.site.siteMetadata}>
+    <Layout>
       <SEO title={title} description={description} />
       <article className="w-full max-w-2xl">
         <div className="text-center my-2x">
@@ -32,9 +31,6 @@ const BlogIndexPage = ({ data }) => {
 
 BlogIndexPage.propTypes = {
   data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: Metadata.isRequired,
-    }).isRequired,
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.arrayOf(
         PropTypes.shape({
@@ -51,17 +47,6 @@ export default BlogIndexPage;
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        author
-        title
-        links {
-          linkedin
-          github
-          source
-        }
-      }
-    }
     allMarkdownRemark(
       filter: { fields: { isBlog: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }

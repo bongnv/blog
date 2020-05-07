@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
 import Layout from "@/components/layout";
-import { Metadata } from "@/types/site-metadata";
 import PostMeta from "@/components/post-meta";
 import SideBar from "@/components/sidebar";
+import SEO from "@/components/seo";
 
 const BlogPost = ({ data }) => {
   const post = data.markdownRemark;
   const headings = data.markdownRemark.headings;
   const showSidebar = headings && headings.length > 0;
   return (
-    <Layout siteMetadata={data.site.siteMetadata}>
+    <Layout>
+      <SEO title={post.frontmatter.title} />
       {showSidebar && <div className="hidden xl:block w-64" />}
       <article className="w-full max-w-2xl">
         <h1 className="text-center text-4xl text-foreground font-extrabold font-display mt-2x mb-1x">
@@ -37,9 +38,6 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: Metadata.isRequired,
-    }).isRequired,
     markdownRemark: PropTypes.shape({
       id: PropTypes.string.isRequired,
       html: PropTypes.string.isRequired,
@@ -61,17 +59,6 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
-    site {
-      siteMetadata {
-        author
-        title
-        links {
-          linkedin
-          github
-          source
-        }
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)

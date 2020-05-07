@@ -7,12 +7,29 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
 import Footer from "./footer";
-import { Metadata } from "@/types/site-metadata";
 
-const Layout = ({ children, siteMetadata }) => {
+const Layout = ({ children }) => {
+  const data = useStaticQuery(graphql`
+    query SiteMetadataQuery {
+      site {
+        siteMetadata {
+          author
+          title
+          links {
+            linkedin
+            github
+            source
+          }
+        }
+      }
+    }
+  `);
+  const siteMetadata = data.site.siteMetadata;
+
   return (
     <>
       <Header siteMetadata={siteMetadata} />
@@ -29,7 +46,6 @@ const Layout = ({ children, siteMetadata }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  siteMetadata: Metadata.isRequired,
 };
 
 export default Layout;
