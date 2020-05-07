@@ -1,11 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
+import { Post } from "@/types";
 
-const IndexPage = ({ data }) => {
+interface IndexPageProps {
+  data: {
+    markdownRemark: Post;
+  };
+}
+
+const IndexPage: FC<IndexPageProps> = ({ data }: IndexPageProps) => {
   const post = data.markdownRemark;
 
   return (
@@ -17,14 +23,6 @@ const IndexPage = ({ data }) => {
       />
     </Layout>
   );
-};
-
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      html: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default IndexPage;

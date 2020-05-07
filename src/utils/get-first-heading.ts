@@ -1,4 +1,11 @@
-export default function getFirstHeading(top, height, headings) {
+export default function getFirstHeading(
+  top: number,
+  height: number,
+  headings: Array<{
+    offsetTop: number;
+    anchor: string;
+  }>,
+): string {
   let lastAnchor = "";
   for (let i = 0; i < headings.length; i += 1) {
     const heading = headings[i];

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
 import ExternalLink from "./external-link";
 
-const Footer = ({ author, source }) => (
+interface FooterProps {
+  author: string;
+  source: string;
+}
+
+const Footer: FC<FooterProps> = ({ author, source }: FooterProps) => (
   <footer className="py-1x border-t">
     <p className="font-display text-sm text-center">
       {author} © 2016 - Present |{" "}
@@ -11,10 +15,5 @@ const Footer = ({ author, source }) => (
     </p>
   </footer>
 );
-
-Footer.propTypes = {
-  author: PropTypes.string.isRequired,
-  source: PropTypes.string.isRequired,
-};
 
 export default Footer;

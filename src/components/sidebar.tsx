@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, FC } from "react";
 
 import classNames from "@/utils/class-names";
 import getFirstHeading from "@/utils/get-first-heading";
+import { Heading } from "@/types";
 
 const WAITING_IN_MS = 100;
 
-const sideBarEffect = (headings, setActiveAnchor) => {
+const sideBarEffect = (
+  headings: Array<Heading>,
+  setActiveAnchor: Function,
+): (() => void) => {
   const anchors = headings.map((heading) => {
     const el = document.getElementById(heading.id);
 
@@ -17,7 +20,7 @@ const sideBarEffect = (headings, setActiveAnchor) => {
   });
 
   let busy = false;
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     if (!busy) {
       busy = true;
       setTimeout(() => {
@@ -31,12 +34,16 @@ const sideBarEffect = (headings, setActiveAnchor) => {
 
   window.addEventListener("scroll", handleScroll);
 
-  return () => {
+  return (): void => {
     window.removeEventListener("scroll", handleScroll);
   };
 };
 
-const SideBar = ({ headings }) => {
+interface SideBarProps {
+  headings: Array<Heading>;
+}
+
+const SideBar: FC<SideBarProps> = ({ headings }: SideBarProps) => {
   const [activeAnchor, setActiveAnchor] = useState("");
   useEffect(() => sideBarEffect(headings, setActiveAnchor), [headings]);
 
@@ -66,16 +73,6 @@ const SideBar = ({ headings }) => {
       </ul>
     </div>
   );
-};
-
-SideBar.propTypes = {
-  headings: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      depth: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
 };
 
 export default SideBar;

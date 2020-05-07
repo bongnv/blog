@@ -1,15 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "@/components/layout";
 import PostMeta from "@/components/post-meta";
 import SideBar from "@/components/sidebar";
 import SEO from "@/components/seo";
+import { Post } from "@/types";
 
-const BlogPost = ({ data }) => {
+interface BlogPostProps {
+  data: {
+    markdownRemark: Post;
+  };
+}
+
+const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
   const post = data.markdownRemark;
-  const headings = data.markdownRemark.headings;
+  const headings = data.markdownRemark.headings.filter(
+    (heading) => heading.depth > 1 && heading.depth < 4,
+  );
   const showSidebar = headings && headings.length > 0;
   return (
     <Layout>
@@ -34,25 +42,6 @@ const BlogPost = ({ data }) => {
       )}
     </Layout>
   );
-};
-
-BlogPost.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      html: PropTypes.string.isRequired,
-      headings: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          value: PropTypes.string.isRequired,
-          depth: PropTypes.number.isRequired,
-        }),
-      ),
-      frontmatter: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      }),
-    }).isRequired,
-  }).isRequired,
 };
 
 export default BlogPost;

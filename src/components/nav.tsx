@@ -1,11 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "gatsby";
 import { Linkedin, GitHub } from "react-feather";
 
-import { Links } from "@/types/site-metadata";
+import { Links } from "@/types";
 import ExternalLink from "./external-link";
 
-const Nav = ({ links }) => (
+interface NavProps {
+  links: Links;
+}
+
+const Nav: FC<NavProps> = ({ links }: NavProps) => (
   <nav className="hidden sm:flex items-center">
     <Link to="/" className="mr-1x" activeClassName="font-bold text-primary">
       About
@@ -25,9 +29,5 @@ const Nav = ({ links }) => (
     </ExternalLink>
   </nav>
 );
-
-Nav.propTypes = {
-  links: Links.isRequired,
-};
 
 export default Nav;

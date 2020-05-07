@@ -7,7 +7,7 @@ module.exports = {
     links: {
       linkedin: "https://linkedin.com/in/bongnv",
       github: "https://github.com/bongnv",
-      source: "https://github.com/bongnv",
+      source: "https://github.com/bongnv/blog",
     },
     siteUrl: "https://bongnv.com",
   },
@@ -58,5 +58,6 @@ module.exports = {
         trackingId: "UA-11696168-2",
       },
     },
+    "gatsby-plugin-sitemap",
   ],
 };

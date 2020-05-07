@@ -1,18 +1,22 @@
 import { Link } from "gatsby";
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { Menu, X } from "react-feather";
 
-import { Metadata } from "@/types/site-metadata";
+import { Metadata } from "@/types";
 import Nav from "./nav";
 import MobileNav from "./mobile-nav";
 
-const Header = ({ siteMetadata }) => {
+interface HeaderProps {
+  siteMetadata: Metadata;
+}
+
+const Header: FC<HeaderProps> = ({ siteMetadata }: HeaderProps) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const handleClick = () => setMenuVisible(!menuVisible);
   const BtnIcon = menuVisible ? X : Menu;
 
   return (
-    <header className="fixed top-0 z-10 w-full bg-background font-display">
+    <header className="fixed top-0 z-10 w-screen bg-background font-display">
       <div className="container max-w-outer px-1x">
         <div className="flex justify-between items-center border-b py-.5x">
           <Link
@@ -34,14 +38,6 @@ const Header = ({ siteMetadata }) => {
       {menuVisible && <MobileNav links={siteMetadata.links} />}
     </header>
   );
-};
-
-Header.propTypes = {
-  siteMetadata: Metadata.isRequired,
-};
-
-Header.defaultProps = {
-  siteTitle: "",
 };
 
 export default Header;

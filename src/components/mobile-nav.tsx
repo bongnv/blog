@@ -1,11 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "gatsby";
 import { Linkedin, GitHub } from "react-feather";
 
-import { Links } from "@/types/site-metadata";
+import { Links } from "@/types";
 import ExternalLink from "./external-link";
 
-const MobileNav = ({ links }) => (
+interface MobileNavProps {
+  links: Links;
+}
+
+const MobileNav: FC<MobileNavProps> = ({ links }: MobileNavProps) => (
   <nav className="flex flex-col justify-start px-1x border-b shadow">
     <Link
       to="/"
@@ -25,15 +29,11 @@ const MobileNav = ({ links }) => (
       <ExternalLink href={links.linkedin} className="mr-1x">
         <Linkedin />
       </ExternalLink>
-      <ExternalLink href={links.links}>
+      <ExternalLink href={links.github}>
         <GitHub />
       </ExternalLink>
     </div>
   </nav>
 );
-
-MobileNav.propTypes = {
-  links: Links.isRequired,
-};
 
 export default MobileNav;

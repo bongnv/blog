@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const ExternalLink = (props) => (
+const ExternalLink: FC = (props: any) => (
   <a {...props} target="_blank" rel="noopener noreferrer" />
 );
 

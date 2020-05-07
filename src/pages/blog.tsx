@@ -1,12 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "@/components/layout";
 import PostCard from "@/components/post-card";
 import SEO from "@/components/seo";
+import { Post } from "@/types";
 
-const BlogIndexPage = ({ data }) => {
+interface BlogIndexPageProps {
+  data: {
+    allMarkdownRemark: {
+      edges: Array<{
+        node: Post;
+      }>;
+    };
+  };
+}
+
+const BlogIndexPage: FC<BlogIndexPageProps> = ({
+  data,
+}: BlogIndexPageProps) => {
   const title = "The blog of Bong";
   const description =
     "Hey! I write about my personal experiences and challenges here.";
@@ -27,20 +39,6 @@ const BlogIndexPage = ({ data }) => {
       </article>
     </Layout>
   );
-};
-
-BlogIndexPage.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-          }),
-        }),
-      ),
-    }).isRequired,
-  }).isRequired,
 };
 
 export default BlogIndexPage;

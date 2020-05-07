@@ -1,10 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import { Link } from "gatsby";
 
 import PostMeta from "./post-meta";
+import { Post } from "@/types";
 
-const PostCard = ({ post }) => (
+interface PostCardProps {
+  post: Post;
+}
+
+const PostCard: FC<PostCardProps> = ({ post }: PostCardProps) => (
   <Link to={post.fields.slug}>
     <div className="border p-1x sm:p-2x card-transition-effect text-foreground my-2x">
       <h2 className="font-display font-semibold text-lg mb-.5x">
@@ -17,18 +21,5 @@ const PostCard = ({ post }) => (
     </div>
   </Link>
 );
-
-PostCard.propTypes = {
-  post: PropTypes.shape({
-    excerpt: PropTypes.string.isRequired,
-    frontmatter: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-    }),
-    fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
-};
 
 export default PostCard;
