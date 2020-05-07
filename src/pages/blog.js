@@ -19,7 +19,7 @@ const BlogIndexPage = ({ data }) => {
           <h1 className="text-4xl text-foreground mb-1x font-extrabold font-display">
             {title}
           </h1>
-          <p className="text-gray-800">{description}</p>
+          <p className="text-gray-800 font-body">{description}</p>
         </div>
         {edges.map(({ node }) => (
           <PostCard key={node.id} post={node} />
