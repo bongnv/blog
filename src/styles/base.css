@@ -48,14 +48,6 @@
   @apply underline;
 }
 
-.content .octicon {
-  @apply inline-block ml-1 invisible fill-current;
-}
-
-.content h2:hover .octicon {
-  @apply visible;
-}
-
-.content h3:hover .octicon {
-  @apply visible;
+.content .heading-anchor {
+  @apply fill-current;
 }

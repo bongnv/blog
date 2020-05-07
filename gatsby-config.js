@@ -30,6 +30,7 @@ module.exports = {
               offsetY: 70,
               className: "heading-anchor",
               elements: [`h2`, `h3`],
+              isIconAfterHeader: true,
             },
           },
           {

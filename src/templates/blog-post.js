@@ -5,11 +5,12 @@ import { graphql } from "gatsby";
 import Layout from "@/components/layout";
 import { Metadata } from "@/types/site-metadata";
 import PostMeta from "@/components/post-meta";
+import SideBar from "@/components/sidebar";
 
 const BlogPost = ({ data }) => {
   const post = data.markdownRemark;
-  const headings = [];
-  const showSidebar = headings.length > 0;
+  const headings = data.markdownRemark.headings;
+  const showSidebar = headings && headings.length > 0;
   return (
     <Layout siteMetadata={data.site.siteMetadata}>
       {showSidebar && <div className="hidden xl:block w-64" />}
@@ -27,7 +28,7 @@ const BlogPost = ({ data }) => {
       </article>
       {showSidebar && (
         <div className="hidden xl:block w-64">
-          {/* <Sidebar headings={headings} /> */}
+          <SideBar headings={headings} />
         </div>
       )}
     </Layout>
@@ -42,6 +43,13 @@ BlogPost.propTypes = {
     markdownRemark: PropTypes.shape({
       id: PropTypes.string.isRequired,
       html: PropTypes.string.isRequired,
+      headings: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          value: PropTypes.string.isRequired,
+          depth: PropTypes.number.isRequired,
+        }),
+      ),
       frontmatter: PropTypes.shape({
         title: PropTypes.string.isRequired,
       }),
@@ -68,6 +76,11 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      headings {
+        id
+        value
+        depth
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
