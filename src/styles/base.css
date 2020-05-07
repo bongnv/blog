@@ -4,6 +4,10 @@
   transition-timing-function: ease-in-out;
 }
 
+.content {
+  @apply font-body
+}
+
 .content h1 {
   @apply text-4xl text-foreground my-2x font-extrabold font-display;
 }
@@ -25,7 +29,7 @@
 }
 
 .content p {
-  @apply leading-6 text-base text-foreground font-body mb-1x;
+  @apply leading-6 text-base text-foreground mb-1x;
 }
 
 .content li {
