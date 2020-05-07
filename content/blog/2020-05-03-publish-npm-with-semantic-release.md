@@ -4,20 +4,20 @@ date: 2020-05-03
 description: I used semantic-release to speed up the handy work when publishing npm packages.
 ---
 
-I have been writing a coupe of [NPM packages](https://www.npmjs.com/) recently and publishing those NPM packages was quite manual and repetitive. If bumping versions, changelog and Github releases are included, the amount of manual work will cost plenty of time. It could easily take up to 30 minutes to have a nicely published NPM package. I then googled the problem and found [`sementic-release`](https://github.com/semantic-release/semantic-release). The tool is very handy and it also provides a bunch of cool features due to its plugins system.
+I have been writing a coupe of [NPM packages](https://www.npmjs.com/) recently and publishing those NPM packages was quite manual and repetitive. Including bumping versions, changelog and Github releases, the amount of manual work will cost plenty of time. It could easily take up to 30 minutes to have a nicely published NPM package. I then googled the problem and found [`sementic-release`](https://github.com/semantic-release/semantic-release). The tool is very handy as it provides a bunch of cool features due to its plugins system.
 
-`semantic-release` supports CI workflow as well as local workflow. The following would give you some ideas how I used it via local workflow.
+`semantic-release` supports CI workflow as well as local workflow; however, I only used it with a local workflow.
 
 ## Installation
 
-In order to start using `semantic-release`, you will need to setup both NPM token as well as Github token as environment variables. I store them in one of my dotfiles for convenience. An example of my `.localrc`:
+In order to start using `semantic-release`, you will need to setup both NPM token as well as Github token in environment variables. I store them in one of my dotfiles for convenience. An example of my `.localrc`:
 
 ```bash
 export GH_TOKEN=someveryrandomgithubtoken
 export NPM_TOKEN=anothersuperrandomnpmtoken
 ```
 
-If you not sure how to generate those tokens, [`semantic-release-cli`](https://github.com/semantic-release/cli) can help to generate them in few minutes and initialize configurations for a project. I used it in my first project to get tokens and be familiar with the tool. I then no longer use it as it keeps asking passwords and MFA token:
+If you not sure how to generate those tokens, [`semantic-release-cli`](https://github.com/semantic-release/cli) can help to generate them in few minutes and initialize configurations for a project. I used it in my first project to get tokens and to be familiar with the tool. I then no longer use it as it keeps asking passwords and MFA token which is inconvenient:
 
 ```bash
 yarn global add semantic-release-cli
@@ -41,6 +41,7 @@ I updated `scripts` in `package.json` for convenience:
   }
 }
 ```
+So I only need `yarn release` to access its commands.
 
 ## Configurations
 
@@ -57,9 +58,9 @@ module.exports = {
 };
 ```
 
-With the default configurations, `semantic-release` will analyze commits using [Angular conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) to generate release notes. It then publishes to NPM repository and publishes a new release in Github. It also update `package.json` for the new package version but commit it. Therefore, an additional plugin is required.
+With the default configurations, `semantic-release` will analyze commits using [Angular conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) to generate release notes. It then publishes to NPM repository and publishes a new release in Github. It also update `package.json` for the new package version but committing it. Therefore, an additional plugin is required in order to push the change to Github.
 
-As I want to generate `CHANGELOG` and commit the changed version in `package.json` automatically, I added two more plugins:
+As I also want to generate `CHANGELOG` and commit the change to my repository automatically, I added two more plugins:
 
 ```bash
 yarn add -D @semantic-release/changelog @semantic-release/git
@@ -87,7 +88,7 @@ The two new plugins will generate `CHANGELOG.md` and push it together with `pack
 
 ## Release
 
-Release is super simple. After committing your changes with the repository, you can run:
+After all of those configurations, Release is super simple. After saving your changes to the repository, you can run:
 
 ```bash
 yarn release -d
@@ -103,4 +104,4 @@ Then a new version of your package will be published to NPM and Github.
 
 ## CI
 
-I didn't set up a CI as one-command release is more than enough for me. If you want to get of your hands free, you can try with Github Actions via [this document](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md).
+I didn't set up a CI as one-command release is more than enough for me. If you want to get of your hands free, you can try with Github Actions via [this document](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md). Another cool thing about `semantic-release` is that it can analyze the commit history to decide to change the version accordingly. Basically, everything can be automated.
