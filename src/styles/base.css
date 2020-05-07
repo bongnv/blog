@@ -51,3 +51,8 @@
 .content .heading-anchor {
   @apply fill-current;
 }
+
+.content blockquote {
+  @apply px-1x border-l-4 mb-1x;
+  border-color: #f5f2f0;
+}

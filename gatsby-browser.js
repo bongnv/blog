@@ -6,4 +6,4 @@
 
 // You can delete this file if you're not using it
 import "./src/styles/index.css";
-import "prismjs/themes/prism-solarizedlight.css";
+import "prismjs/themes/prism.css";
