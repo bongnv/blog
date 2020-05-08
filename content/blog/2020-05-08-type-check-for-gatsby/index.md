@@ -3,6 +3,7 @@ title: Type checking for Gatsby with TypeScript
 date: 2020-05-08
 description: I was looking for a TypeScript support in Gatsby and fortunately there is a native support. I then find it simple and would like share it here for those who are looking for it.
 published: true
+tags: ["react", "gatsby", "typescript"]
 ---
 
 Coming from Golang background, writing codes without type checking is somehow uncomfortable. Therefore, I was looking for a TypeScript support in Gatsby like [`gatsby-plugin-typescript`](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/). However, without core integration, the plugin has a couple of limitations like [this issue](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/#caveats). Fortunately, Gatsby is recently developing a native support for Typescript ([link](https://www.gatsbyjs.org/blog/2020-01-23-why-typescript-chose-gatsby/)) so we can enable TypeScript without a plugin.
@@ -23,7 +24,7 @@ gatsby new gatsby-site
 
 Just to ensure that the site is created successfully:
 
-```
+```shell
 cd gatsby-site
 gatsby develop
 ```
@@ -32,7 +33,7 @@ Gatsby will start a hot-reloading development environment which is accessible by
 
 ## Add type checking
 
-You may notice that `page-2.tsx` is created with the default stater which means TypeScript is natively supported by Gatsby. However, there is still no type checking yet. We will implement it by adding installing these packages:
+You may notice that `page-2.tsx` is created with the default stater which means TypeScript is natively supported by Gatsby. However, there is still no type checking yet. We will implement it by installing these packages:
 
 ```shell
 yarn add -D typescript @types/node @types/react @types/react-dom @types/react-helmet
@@ -60,7 +61,7 @@ Next, we need to add `tsconfig.json`. I copied from [this file](https://github.c
 }
 ```
 
-To verify it, I run `tsc --noEmit`. Sadly, I got this error and `gatsby` module is not resolved properly:
+To verify it, I run `tsc --noEmit`. Sadly, I got this error and the reason is that the `gatsby` module is not resolved properly:
 
 ```shell
 ~/projects/gatsby-site % tsc --noEmit
@@ -83,7 +84,7 @@ src/pages/page-2.tsx:6:17 - error TS7016: Could not find a declaration file for 
 Found 3 errors.
 ```
 
-`gatsby` does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. I resolved the issue by simply adding `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
+Checking `node_modules/gatsby`, it does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. It's actually quite simple, I just add `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
 
 Now, run `tsc --noEmit` again, `gatsby` module is resolved but there are some errors with importing `layout.js` and `seo.js`. It is totally fine, we will re-write those files in TypeScript.
 
@@ -91,7 +92,7 @@ For convenience, I added a script in `package.json` like `"type-check": "tsc --n
 
 ## Rewrite codes in TypeScript
 
-Type checking will fail because some components are not declared with types. We can fix it by simply rewriting those files in TypeScript, defining props and declare types. Let's take `seo.js` as an example. I first rename the file to `seo.tsx` for the sake of convention, then adding types for props:
+Type checking will fail because some components are not declared with types. We can fix it by simply rewriting those files in TypeScript, defining props and declaring types. Let's take `seo.js` as an example. I first rename the file to `seo.tsx` for the sake of convention, then adding types for props:
 
 ```ts
 interface SEOProps {
@@ -119,7 +120,9 @@ The type error should be gone if we run `yarn type-check` again.
 
 ## Summary
 
-We have added type checking for the Gatsby default starter without any additional plugins thanks to the recent TypeScript support from Gatsby team. For your reference, all the codes are pushed to https://github.com/bongnv/gatsby-typescript-starter. Furthermore, due to the strong integration with TypeScript, VSCode should work nicely with the project including type checking as well as intellisense.
+We have added type checking for the Gatsby default starter without any additional plugins thanks to the recent TypeScript support from Gatsby team. For your reference, all the codes are pushed to https://github.com/bongnv/gatsby-typescript-starter.
+
+Furthermore, due to the strong integration with TypeScript, VSCode should work nicely with the project including type checking as well as intellisense.
 
 If your project happen to use eslint, you can add these packages for TypeScript support:
 
@@ -142,4 +145,4 @@ and you might need to exclude some TypeScript rules from your js files in `.esli
 }
 ```
 
-Follow [this issue](https://github.com/gatsbyjs/gatsby/issues/18983) for latest updates for TypeScript from Gatsby team and enjoy type checking with Gatsby!
+Follow [this issue](https://github.com/gatsbyjs/gatsby/issues/18983) for latest updates for TypeScript from Gatsby team and enjoy type checking when creating your great website!
