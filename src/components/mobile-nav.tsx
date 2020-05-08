@@ -10,7 +10,7 @@ interface MobileNavProps {
 }
 
 const MobileNav: FC<MobileNavProps> = ({ links }: MobileNavProps) => (
-  <nav className="flex flex-col justify-start px-1x border-b shadow">
+  <nav className="flex flex-col justify-start px-1x border-b shadow font-medium">
     <Link
       to="/"
       className="pl-.5x mt-1x"
