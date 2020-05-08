@@ -26,6 +26,7 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
             linkedin
             github
             source
+            email
           }
         }
       }

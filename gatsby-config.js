@@ -8,6 +8,7 @@ module.exports = {
       linkedin: "https://linkedin.com/in/bongnv",
       github: "https://github.com/bongnv",
       source: "https://github.com/bongnv/blog",
+      email: "mailto:vanbong@gmail.com",
     },
     siteUrl: "https://bongnv.com",
   },

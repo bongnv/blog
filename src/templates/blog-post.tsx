@@ -36,9 +36,9 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
         />
       </article>
       {showSidebar && (
-        <div className="hidden xl:block w-64">
+        <aside className="hidden xl:block w-64">
           <SideBar headings={headings} />
-        </div>
+        </aside>
       )}
     </Layout>
   );

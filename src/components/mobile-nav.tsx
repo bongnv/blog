@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "gatsby";
-import { Linkedin, GitHub } from "react-feather";
+import { Linkedin, GitHub, Mail } from "react-feather";
 
 import { Links } from "@/types";
 import XLink from "./external-link";
@@ -29,8 +29,11 @@ const MobileNav: FC<MobileNavProps> = ({ links }: MobileNavProps) => (
       <XLink to={links.linkedin} className="mr-1x">
         <Linkedin />
       </XLink>
-      <XLink to={links.github}>
+      <XLink to={links.github} className="mr-1x">
         <GitHub />
+      </XLink>
+      <XLink to={links.email}>
+        <Mail />
       </XLink>
     </div>
   </nav>

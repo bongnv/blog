@@ -26,6 +26,7 @@ export interface Links {
   linkedin: string;
   github: string;
   source: string;
+  email: string;
 }
 
 export interface Metadata {
