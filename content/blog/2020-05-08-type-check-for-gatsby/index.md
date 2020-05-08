@@ -60,7 +60,7 @@ Next, we need to add `tsconfig.json`. I copied from [this file](https://github.c
 }
 ```
 
-To verify it, I run `tsc --noEmit`. Sadly, I got this error and `gatsby` is not resolved:
+To verify it, I run `tsc --noEmit`. Sadly, I got this error and `gatsby` module is not resolved properly:
 
 ```shell
 ~/projects/gatsby-site % tsc --noEmit
@@ -85,13 +85,13 @@ Found 3 errors.
 
 `gatsby` does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. I resolved the issue by simply adding `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
 
-Now, run `tsc --noEmit` again, `gatsby` module is resolved but `layout.js` and `seo.js`. It is totally fine, we will re-write those files in TypeScript.
+Now, run `tsc --noEmit` again, `gatsby` module is resolved but there are some errors with importing `layout.js` and `seo.js`. It is totally fine, we will re-write those files in TypeScript.
 
-For convenience, I added a script in `package.json` like `"type-check": "tsc --noEmit",`
+For convenience, I added a script in `package.json` like `"type-check": "tsc --noEmit",` to have `yarn type-check` command.
 
 ## Rewrite codes in TypeScript
 
-Type checking will fail because some components are not declared with types. We can fix it by simply rewriting in TypeScript and defining props and declare types. Let's take `seo.js` as an example. I first convert the file to `seo.tsx` for the sake of convention, then adding types for props:
+Type checking will fail because some components are not declared with types. We can fix it by simply rewriting those files in TypeScript, defining props and declare types. Let's take `seo.js` as an example. I first rename the file to `seo.tsx` for the sake of convention, then adding types for props:
 
 ```ts
 interface SEOProps {
@@ -102,7 +102,7 @@ interface SEOProps {
 }
 ```
 
-Add type and default value for the `SEO` component:
+Add type and default values:
 
 ```ts
 const SEO: React.FC<SEOProps> = ({
@@ -119,7 +119,7 @@ The type error should be gone if we run `yarn type-check` again.
 
 ## Summary
 
-We have added type checking for the Gatsby default starter without any additional plugins thanks to the recent TypeScript support from Gatsby team. For your reference, all the codes are pushed to https://github.com/bongnv/gatsby-typescript-starter. Due to the strong integration with TypeScript, VSCode should work nicely with the project including type checking as well as intellisense.
+We have added type checking for the Gatsby default starter without any additional plugins thanks to the recent TypeScript support from Gatsby team. For your reference, all the codes are pushed to https://github.com/bongnv/gatsby-typescript-starter. Furthermore, due to the strong integration with TypeScript, VSCode should work nicely with the project including type checking as well as intellisense.
 
 If your project happen to use eslint, you can add these packages for TypeScript support:
 
