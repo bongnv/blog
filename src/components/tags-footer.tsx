@@ -11,8 +11,8 @@ const TagsFooter: React.FC<TagsFooterProps> = ({
   return (
     <ul className="mb-1x">
       {tags.map((tag) => (
-        <li key={tag} className="inline-block mr-.5x my-.5x">
-          <Link to={`/tags/${tag}/`} className="rounded p-.5x bg-surface">
+        <li key={tag} className="inline-block m-1">
+          <Link to={`/tags/${tag}/`} className="block rounded p-1 bg-surface">
             {tag}
           </Link>
         </li>

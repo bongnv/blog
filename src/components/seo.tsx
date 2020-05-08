@@ -13,7 +13,9 @@ interface SEOProps {
   description?: string;
   title: string;
   lang?: string;
-  meta?: Array<any>;
+  meta?: Array<
+    { name: string; content: string } | { property: string; content: string }
+  >;
 }
 
 const SEO: FC<SEOProps> = ({
@@ -36,7 +38,7 @@ const SEO: FC<SEOProps> = ({
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription: string = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -68,7 +70,7 @@ const SEO: FC<SEOProps> = ({
         },
         {
           name: "twitter:creator",
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.author as string,
         },
         {
           name: "twitter:title",

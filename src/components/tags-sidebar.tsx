@@ -32,11 +32,11 @@ const TagsSideBar: React.FC<TagsSideBar> = ({
       </h3>
       <ul className="">
         {tags.map((tag) => (
-          <li key={tag.fieldValue} className="inline-block mr-.5x my-.5x">
+          <li key={tag.fieldValue} className="inline-block m-1">
             <Link
               to={`/tags/${tag.fieldValue}/`}
               className={classNames({
-                "rounded p-.5x bg-surface": true,
+                "block rounded p-1 bg-surface": true,
                 "font-bold text-primary": tag.fieldValue === currentTag,
               })}
             >
