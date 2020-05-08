@@ -124,7 +124,7 @@ We have added type checking for the Gatsby default starter without any additiona
 
 Furthermore, due to the strong integration with TypeScript, VSCode should work nicely with the project including type checking as well as intellisense.
 
-If your project happen to use eslint, you can add these packages for TypeScript support:
+If your project happens to use eslint, you can add these packages for TypeScript support:
 
 ```shell
 yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser

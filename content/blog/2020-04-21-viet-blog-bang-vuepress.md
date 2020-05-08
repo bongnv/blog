@@ -3,6 +3,7 @@ title: Viết blog bằng VuePress
 date: 2020-04-21
 description: Bài viết này không chỉ hướng dẫn bạn tạo một blog cá nhân bằng mà còn giới thiệu cách tự động đưa lên Github Pages. Bài được viết một cách dễ hiểu nhất để ai có thể làm dù bạn mới lần đầu tiếp xúc với trang nội dung tĩnh.
 published: true
+tags: ["vue", "vuepress"]
 ---
 
 [English](/blog/2020-04-21-blogging-with-vuepress/)

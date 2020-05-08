@@ -4,7 +4,10 @@ import { graphql } from "gatsby";
 import { Post } from "@/types";
 import PostList from "@/components/post-list";
 
-interface BlogIndexPageProps {
+interface BlogTagProps {
+  pageContext: {
+    tag: string;
+  };
   data: {
     allMarkdownRemark: {
       edges: Array<{
@@ -14,22 +17,22 @@ interface BlogIndexPageProps {
   };
 }
 
-const BlogIndexPage: FC<BlogIndexPageProps> = ({
-  data,
-}: BlogIndexPageProps) => {
-  const title = "The blog of Bong";
-  const description =
-    "Hey! I write about my personal experiences and challenges here.";
+const BlogTagPage: FC<BlogTagProps> = ({ pageContext, data }: BlogTagProps) => {
+  const { tag } = pageContext;
+  const title = `Tagged in ${tag}`;
   const edges = data.allMarkdownRemark.edges;
-  return <PostList title={title} edges={edges} description={description} />;
+  return <PostList title={title} tag={tag} edges={edges} />;
 };
 
-export default BlogIndexPage;
+export default BlogTagPage;
 
 export const pageQuery = graphql`
-  query {
+  query($tag: String) {
     allMarkdownRemark(
-      filter: { fields: { isBlog: { eq: true }, isPublished: { eq: true } } }
+      filter: {
+        fields: { isBlog: { eq: true }, isPublished: { eq: true } }
+        frontmatter: { tags: { in: [$tag] } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {

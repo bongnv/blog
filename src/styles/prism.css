@@ -54,7 +54,7 @@ copied from prismjs/themes/prism.css
 
  :not(pre) > code[class*="language-"],
  pre[class*="language-"] {
-   background: #f5f2f0;
+   background: var(--color-surface);
  }
 
  /* Inline code */

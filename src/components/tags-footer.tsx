@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 
 interface TagsFooterProps {
   tags: Array<string>;
@@ -11,7 +12,9 @@ const TagsFooter: React.FC<TagsFooterProps> = ({
     <ul className="mb-1x">
       {tags.map((tag) => (
         <li key={tag} className="inline-block mr-.5x my-.5x">
-          <span className="rounded p-.5x bg-surface">{tag}</span>
+          <Link to={`/tags/${tag}/`} className="rounded p-.5x bg-surface">
+            {tag}
+          </Link>
         </li>
       ))}
     </ul>
