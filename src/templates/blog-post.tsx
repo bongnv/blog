@@ -33,7 +33,7 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
           <div className="text-center mb-2x">
             <PostMeta post={post} />
           </div>
-          <div
+          <article
             className="content"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />

@@ -27,7 +27,7 @@ const TagsSideBar: React.FC<TagsSideBar> = ({
   }>;
   return (
     <div className="top-4x sticky font-display border-r pr-1x mt-4x mr-1x">
-      <h3 className="font-bold tracking-wide uppercase mb-.5x pb-.5x border-b">
+      <h3 className="font-bold tracking-wide uppercase ml-1 mb-.5x pb-.5x border-b">
         Tags
       </h3>
       <ul className="">
