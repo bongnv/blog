@@ -17,7 +17,7 @@ const IndexPage: FC<IndexPageProps> = ({ data }: IndexPageProps) => {
   return (
     <Layout>
       <SEO title="About" />
-      <article
+      <main
         className="w-full max-w-2xl content"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />

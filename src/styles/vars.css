@@ -2,6 +2,7 @@
   --color-background: theme('colors.white');
   --color-foreground: theme('colors.gray.800');
   --color-primary: theme('colors.indigo.600');
+  --color-surface: #f5f2f0;
 }
 
 html[lights-out] {

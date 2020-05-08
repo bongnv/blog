@@ -11,12 +11,14 @@ module.exports = {
         background: "var(--color-background)",
         foreground: "var(--color-foreground)",
         primary: "var(--color-primary)",
+        surface: "var(--color-surface)",
       },
       spacing: {
         sm: "24rem",
         ".5x": "0.5rem",
         "1x": "1rem",
         "2x": "2rem",
+        "4x": "4rem",
       },
       fontFamily: {
         body: [

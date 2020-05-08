@@ -26,7 +26,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   return (
     <Layout>
       <SEO title={title} description={description} />
-      <article className="w-full max-w-2xl">
+      <main className="w-full max-w-2xl">
         <div className="text-center my-2x">
           <h1 className="text-4xl text-foreground mb-1x font-extrabold font-display">
             {title}
@@ -36,7 +36,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
         {edges.map(({ node }) => (
           <PostCard key={node.id} post={node} />
         ))}
-      </article>
+      </main>
     </Layout>
   );
 };

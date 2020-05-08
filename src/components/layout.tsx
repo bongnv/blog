@@ -38,7 +38,7 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
     <>
       <Header siteMetadata={siteMetadata} />
       <div className="container w-full max-w-outer min-h-screen pt-16 sm:pt-20 px-1x flex flex-col justify-between">
-        <main className="w-full flex justify-center">{props.children}</main>
+        <div className="w-full flex justify-center">{props.children}</div>
         <Footer
           author={siteMetadata.author}
           source={siteMetadata.links.source}
