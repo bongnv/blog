@@ -26,8 +26,8 @@ const TagsSideBar: React.FC<TagsSideBar> = ({
     totalCount: number;
   }>;
   return (
-    <div className="top-4x sticky font-display border-r pr-1x mt-4x mr-1x">
-      <h3 className="font-bold tracking-wide uppercase ml-1 mb-.5x pb-.5x border-b">
+    <div className="top-4x sticky font-display border-r border-divider pr-1x mt-4x mr-1x">
+      <h3 className="font-bold tracking-wide uppercase ml-1 mb-.5x pb-.5x border-b border-divider">
         Tags
       </h3>
       <ul className="">
@@ -36,7 +36,7 @@ const TagsSideBar: React.FC<TagsSideBar> = ({
             <Link
               to={`/tags/${tag.fieldValue}/`}
               className={classNames({
-                "block rounded p-1 bg-surface": true,
+                "block rounded p-1 bg-inline-surface": true,
                 "font-bold text-primary": tag.fieldValue === currentTag,
               })}
             >

@@ -4,9 +4,9 @@ copied from prismjs/themes/prism.css
 
  code[class*="language-"],
  pre[class*="language-"] {
-   color: black;
-   background: none;
-   text-shadow: 0 1px white;
+   color: var(--color-foreground);
+   background: var(--color-surface);
+   text-shadow: none;
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
    font-size: 1em;
    text-align: left;
@@ -59,6 +59,7 @@ copied from prismjs/themes/prism.css
 
  /* Inline code */
  :not(pre) > code[class*="language-"] {
+  background: var(--color-inline-surface);
    padding: .1em;
    border-radius: .3em;
    white-space: normal;
@@ -68,11 +69,13 @@ copied from prismjs/themes/prism.css
  .token.prolog,
  .token.doctype,
  .token.cdata {
-   color: slategray;
+   color: var(--color-light-gray);
+   background: var(--color-surface);
  }
 
  .token.punctuation {
-   color: #999;
+   color: var(--color-gray);
+   background: var(--color-surface);
  }
 
  .token.namespace {
@@ -86,7 +89,8 @@ copied from prismjs/themes/prism.css
  .token.constant,
  .token.symbol,
  .token.deleted {
-   color: #905;
+   color: var(--color-pink);
+   background: var(--color-surface);
  }
 
  .token.selector,
@@ -95,7 +99,8 @@ copied from prismjs/themes/prism.css
  .token.char,
  .token.builtin,
  .token.inserted {
-   color: #690;
+   color: var(--color-green);
+   background: var(--color-surface);
  }
 
  .token.operator,
@@ -103,25 +108,28 @@ copied from prismjs/themes/prism.css
  .token.url,
  .language-css .token.string,
  .style .token.string {
-   color: #9a6e3a;
-   /* background: hsla(0, 0%, 100%, .5); */
+   color: var(--color-orange);
+   background: var(--color-surface);
  }
 
  .token.atrule,
  .token.attr-value,
  .token.keyword {
-   color: #07a;
+   color: var(--color-blue);
+   background: var(--color-surface);
  }
 
  .token.function,
  .token.class-name {
-   color: #DD4A68;
+   color: var(--color-red);
+   background: var(--color-surface);
  }
 
  .token.regex,
  .token.important,
  .token.variable {
-   color: #e90;
+   color: var( --color-yellow);
+   background: var(--color-surface);
  }
 
  .token.important,

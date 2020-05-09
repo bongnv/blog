@@ -8,8 +8,7 @@ interface PostMetaProps {
 
 const PostMeta: FC<PostMetaProps> = ({ post }: PostMetaProps) => (
   <p className="text-sm">
-    <span>Posted on {post.frontmatter.date}</span>
-    {" - "}
+    {`Posted on ${post.frontmatter.date} - `}
     <strong>{Math.ceil(post.fields.readingTime.minutes)} min read</strong>
   </p>
 );

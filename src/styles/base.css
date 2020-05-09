@@ -1,35 +1,41 @@
 * {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   transition-property: color, background-color, border-color;
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
 }
 
+body a {
+  @apply text-foreground;
+}
+
 .content {
-  @apply font-body
+  @apply font-body;
 }
 
 .content h1 {
-  @apply text-4xl text-foreground my-2x font-extrabold font-display;
+  @apply text-4xl my-2x font-extrabold font-display;
 }
 
 .content h2 {
-  @apply leading-8 text-2xl text-foreground mb-1x mt-6 pb-2 font-bold font-display border-b;
+  @apply leading-8 text-2xl mb-1x mt-6 pb-2 font-bold font-display border-b border-divider;
 }
 
 .content h3 {
-  @apply leading-6 text-xl text-foreground mb-1x mt-6 font-bold font-display;
+  @apply leading-6 text-xl mb-1x mt-6 font-bold font-display;
 }
 
 .content h4 {
-  @apply leading-6 text-lg text-foreground mb-1x mt-6 font-semibold font-display;
+  @apply leading-6 text-lg mb-1x mt-6 font-semibold font-display;
 }
 
 .content h5, h6 {
-  @apply leading-6 text-lg text-foreground mb-1x mt-6 font-medium font-display;
+  @apply leading-6 text-lg mb-1x mt-6 font-medium font-display;
 }
 
 .content p {
-  @apply leading-6 text-base text-foreground mb-1x;
+  @apply leading-6 text-base mb-1x;
 }
 
 .content li {
@@ -53,6 +59,5 @@
 }
 
 .content blockquote {
-  @apply px-1x border-l-4 mb-1x;
-  border-color: #f5f2f0;
+  @apply px-1x border-l-4 border-primary mb-1x;
 }

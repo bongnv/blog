@@ -48,8 +48,8 @@ const SideBar: FC<SideBarProps> = ({ headings }: SideBarProps) => {
   useEffect(() => sideBarEffect(headings, setActiveAnchor), [headings]);
 
   return (
-    <div className="top-4x sticky font-display border-l pl-1x mt-4x ml-1x">
-      <h3 className="font-bold tracking-wide uppercase mb-.5x pb-.5x border-b">
+    <div className="top-4x sticky font-display border-l  border-divider pl-1x mt-4x ml-1x">
+      <h3 className="font-bold tracking-wide uppercase mb-.5x pb-.5x border-b border-divider">
         On this page
       </h3>
       <ul>

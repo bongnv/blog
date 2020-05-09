@@ -11,7 +11,8 @@ module.exports = {
         background: "var(--color-background)",
         foreground: "var(--color-foreground)",
         primary: "var(--color-primary)",
-        surface: "var(--color-surface)",
+        "inline-surface": "var(--color-inline-surface)",
+        divider: "var(--color-divider)",
       },
       spacing: {
         sm: "24rem",

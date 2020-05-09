@@ -14,20 +14,18 @@ const Header: FC<HeaderProps> = ({ siteMetadata }: HeaderProps) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const handleClick = (): void => setMenuVisible(!menuVisible);
   const BtnIcon = menuVisible ? X : Menu;
-
   return (
     <header className="fixed top-0 z-10 w-screen bg-background font-display">
       <div className="container max-w-outer px-1x">
-        <div className="flex justify-between items-center border-b py-.5x">
+        <div className="flex justify-between items-center border-b  border-divider py-.5x">
           <Link
-            className="tracking-tighter text-black text-xl sm:text-2xl font-bold"
+            className="tracking-tighter text-xl sm:text-2xl font-bold"
             to="/"
           >
             {siteMetadata.title}
           </Link>
           <Nav links={siteMetadata.links} />
           <button
-            type="button"
             className="sm:hidden focus:outline-none"
             onClick={handleClick}
           >

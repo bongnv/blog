@@ -4,6 +4,7 @@ import { Linkedin, GitHub, Mail } from "react-feather";
 
 import { Links } from "@/types";
 import XLink from "./external-link";
+import DarkModeSwitcher from "./dark-mode-switcher";
 
 interface NavProps {
   links: Links;
@@ -11,12 +12,12 @@ interface NavProps {
 
 const Nav: FC<NavProps> = ({ links }: NavProps) => (
   <nav className="hidden sm:flex items-center font-medium">
-    <Link to="/" className="mr-1x" activeClassName="font-black text-primary">
+    <Link to="/" className="mr-2x" activeClassName="font-black text-primary">
       About
     </Link>
     <Link
       to="/blog/"
-      className="mr-1x"
+      className="mr-2x"
       activeClassName="font-black text-primary"
     >
       Blog
@@ -27,9 +28,10 @@ const Nav: FC<NavProps> = ({ links }: NavProps) => (
     <XLink to={links.github} className="mr-1x">
       <GitHub />
     </XLink>
-    <XLink to={links.email}>
+    <XLink to={links.email} className="mr-1x">
       <Mail />
     </XLink>
+    <DarkModeSwitcher />
   </nav>
 );
 

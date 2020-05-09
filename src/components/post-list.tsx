@@ -29,12 +29,10 @@ const PostList: React.FC<PostListProps> = ({
       </div>
       <main className="w-full max-w-2xl">
         <div className="text-center my-2x">
-          <h1 className="text-4xl text-foreground mb-1x font-extrabold font-display">
+          <h1 className="text-4xl mb-1x font-extrabold font-display">
             {title}
           </h1>
-          {description && (
-            <p className="text-gray-800 font-body">{description}</p>
-          )}
+          {description && <p className="font-body">{description}</p>}
         </div>
         {edges.map(({ node }) => (
           <PostCard key={node.id} post={node} />

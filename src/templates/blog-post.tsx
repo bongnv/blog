@@ -27,7 +27,7 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
       {showSidebar && <div className="hidden xl:block w-64" />}
       <div className="w-full max-w-2xl">
         <main className="mb-2x">
-          <h1 className="text-center text-4xl text-foreground font-extrabold font-display mt-2x mb-1x">
+          <h1 className="text-center text-4xl font-extrabold font-display mt-2x mb-1x">
             {post.frontmatter.title}
           </h1>
           <div className="text-center mb-2x">
