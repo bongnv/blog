@@ -84,7 +84,7 @@ src/pages/page-2.tsx:6:17 - error TS7016: Could not find a declaration file for 
 Found 3 errors.
 ```
 
-Checking `node_modules/gatsby`, it does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. Actually, the fix is  quite simple, I just add `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
+Checking `node_modules/gatsby`, it does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. Actually, the fix is quite simple, I just add `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
 
 Now, run `tsc --noEmit` again, `gatsby` module is resolved but there are some errors with importing `layout.js` and `seo.js`. It is totally fine, we will re-write those files in TypeScript.
 

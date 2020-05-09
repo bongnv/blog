@@ -62,6 +62,10 @@ body a {
   @apply px-1x border-l-4 border-primary mb-1x;
 }
 
+.content svg {
+  @apply inline-block;
+}
+
 html[lights-out] .sun {
   display: none;
 }
