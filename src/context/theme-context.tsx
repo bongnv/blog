@@ -2,6 +2,11 @@ import React from "react";
 
 const LIGHTS_OUT = "lights-out";
 
+const getInitialDarkMode = (): boolean => {
+  const darkMode = window.localStorage.getItem(LIGHTS_OUT);
+  return darkMode === "true";
+};
+
 const defaultContext = {
   darkMode: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -17,8 +22,7 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
 }: ThemeProviderProps) => {
-  const [darkMode, setDarkModeState] = React.useState(false);
-  document.documentElement.toggleAttribute(LIGHTS_OUT, darkMode);
+  const [darkMode, setDarkModeState] = React.useState(getInitialDarkMode());
 
   const setDarkMode = (mode: boolean): void => {
     setDarkModeState(mode);
