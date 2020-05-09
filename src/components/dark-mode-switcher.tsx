@@ -1,12 +1,18 @@
 import React, { FC } from "react";
 import { Moon, Sun } from "react-feather";
 
-import { ThemeContext } from "@/context/theme-context";
+const LIGHTS_OUT = "lights-out";
+
+const initialDarkMode = (): boolean =>
+  window.localStorage.getItem(LIGHTS_OUT) === "true";
 
 const DarkModeSwitcher: FC = () => {
-  const { darkMode, setDarkMode } = React.useContext(ThemeContext);
+  const [darkMode, setDarkMode] = React.useState(initialDarkMode());
   const handleClick = (): void => {
-    setDarkMode(!darkMode);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    document.documentElement.toggleAttribute(LIGHTS_OUT, newMode);
+    window.localStorage.setItem(LIGHTS_OUT, newMode ? "true" : "false");
   };
 
   return <button onClick={handleClick}>{darkMode ? <Moon /> : <Sun />}</button>;

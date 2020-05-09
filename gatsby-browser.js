@@ -5,16 +5,4 @@
  */
 
 // You can delete this file if you're not using it
-import React from "react";
-import PropTypes from "prop-types";
-
 import "./src/styles/index.css";
-import { ThemeProvider } from "./src/context/theme-context";
-
-export const wrapRootElement = ({ element }) => (
-  <ThemeProvider>{element}</ThemeProvider>
-);
-
-wrapRootElement.propTypes = {
-  element: PropTypes.node.isRequired,
-};
