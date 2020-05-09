@@ -6,17 +6,17 @@ published: true
 tags: ["react", "gatsby", "typescript"]
 ---
 
-Coming from Golang background, writing codes without type checking is somehow uncomfortable. Therefore, I was looking for a TypeScript support in Gatsby like [`gatsby-plugin-typescript`](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/). However, without core integration, the plugin has a couple of limitations like [this issue](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/#caveats). Fortunately, Gatsby is recently developing a native support for Typescript ([link](https://www.gatsbyjs.org/blog/2020-01-23-why-typescript-chose-gatsby/)) so we can enable TypeScript without a plugin.
+Coming from Golang background, writing codes without type is somehow uncomfortable. Therefore, I was looking for a TypeScript support in Gatsby like [`gatsby-plugin-typescript`](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/) to accommodate that. However, without core integration, the plugin has a couple of limitations like [this issue](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/#caveats). Fortunately, Gatsby is recently developing a native support for Typescript ([link](https://www.gatsbyjs.org/blog/2020-01-23-why-typescript-chose-gatsby/)) so we can enable TypeScript without a plugin.
 
 ## Create a new site
 
-Firstly, make sure `gatsby-cli` is installed or you can use this quick command to install it:
+Firstly, make sure `gatsby-cli` is installed or we can use this quick command to install it:
 
 ```shell
 yarn global add gatsby-cli
 ```
 
-Create a new website and follow the instruction
+Then create a new website by the bellowing command and follow the instruction
 
 ```shell
 gatsby new gatsby-site
@@ -29,7 +29,7 @@ cd gatsby-site
 gatsby develop
 ```
 
-Gatsby will start a hot-reloading development environment which is accessible by default at http://localhost:8000.
+With the above command, Gatsby will start a hot-reloading development environment which is accessible by default at http://localhost:8000.
 
 ## Add type checking
 
@@ -39,7 +39,7 @@ You may notice that `page-2.tsx` is created with the default stater which means 
 yarn add -D typescript @types/node @types/react @types/react-dom @types/react-helmet
 ```
 
-Next, we need to add `tsconfig.json`. I copied from [this file](https://github.com/gatsbyjs/gatsby/blob/master/examples/using-typescript/tsconfig.json) in `gatsby` repo:
+Next, we need to add `tsconfig.json`. My laziness guided me to copy the file from [this file](https://github.com/gatsbyjs/gatsby/blob/master/examples/using-typescript/tsconfig.json) in `gatsby` repo:
 
 ```json
 {
@@ -84,7 +84,7 @@ src/pages/page-2.tsx:6:17 - error TS7016: Could not find a declaration file for 
 Found 3 errors.
 ```
 
-Checking `node_modules/gatsby`, it does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. It's actually quite simple, I just add `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
+Checking `node_modules/gatsby`, it does define types in [`index.d.ts`](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/index.d.ts) so the configuration is missing something. Actually, the fix is  quite simple, I just add `"moduleResolution": "node",` to `complierOptions` in `tsconfig.json`.
 
 Now, run `tsc --noEmit` again, `gatsby` module is resolved but there are some errors with importing `layout.js` and `seo.js`. It is totally fine, we will re-write those files in TypeScript.
 
@@ -103,7 +103,7 @@ interface SEOProps {
 }
 ```
 
-Add type and default values:
+And add default values:
 
 ```ts
 const SEO: React.FC<SEOProps> = ({
@@ -130,7 +130,7 @@ If your project happens to use eslint, you can add these packages for TypeScript
 yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
-and you might need to exclude some TypeScript rules from your js files in `.eslintrc.js` like:
+and you might need to exclude some TypeScript rules from your js files in `.eslintrc.js` like I did:
 
 ```js
 {
