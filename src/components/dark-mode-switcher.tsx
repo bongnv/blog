@@ -17,7 +17,11 @@ const DarkModeSwitcher: FC = () => {
     setDarkMode(isDarkMode);
   }, []);
 
-  return <button onClick={handleClick}>{darkMode ? <Moon /> : <Sun />}</button>;
+  return (
+    <button onClick={handleClick}>
+      {darkMode ? <Moon className="moon hidden" /> : <Sun className="sun" />}
+    </button>
+  );
 };
 
 export default DarkModeSwitcher;

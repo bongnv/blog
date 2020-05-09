@@ -61,3 +61,11 @@ body a {
 .content blockquote {
   @apply px-1x border-l-4 border-primary mb-1x;
 }
+
+html[lights-out] .sun {
+  display: none;
+}
+
+html[lights-out] .moon {
+  display: block;
+}
