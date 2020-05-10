@@ -30,7 +30,7 @@ module.exports = {
           "Times",
           "serif",
         ],
-        display: ["Noto Sans SC", "Roboto", "Ubuntu"],
+        display: ["Noto Sans", "Roboto", "Ubuntu"],
       },
     },
     container: {
