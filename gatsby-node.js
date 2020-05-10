@@ -76,7 +76,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const slug = createFilePath({ node, getNode });
     const isBlog = slug.startsWith("/blog/");
     const isPublished =
-      process.env.NODE_ENV !== "production" || node.frontmatter.published;
+      process.env.NODE_ENV !== "production" ||
+      node.frontmatter.published ||
+      false;
 
     createNodeField({
       name: "slug",

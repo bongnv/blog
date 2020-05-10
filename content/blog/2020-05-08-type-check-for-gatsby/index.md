@@ -1,12 +1,12 @@
 ---
 title: Type checking for Gatsby with TypeScript
 date: 2020-05-08
-description: I was looking for a TypeScript support in Gatsby and fortunately there is a native support. I then find it simple and would like share it here for those who are looking for it.
+description: I was looking for TypeScript support in Gatsby and fortunately there is native one which is ongoingly built by the Gatsby team. I then find it simple and would like to share it here for those who are looking for it.
 published: true
 tags: ["react", "gatsby", "typescript"]
 ---
 
-Coming from Golang background, writing codes without type is somehow uncomfortable. Therefore, I was looking for a TypeScript support in Gatsby like [`gatsby-plugin-typescript`](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/) to accommodate that. However, without core integration, the plugin has a couple of limitations like [this issue](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/#caveats). Fortunately, Gatsby is recently developing a native support for Typescript ([link](https://www.gatsbyjs.org/blog/2020-01-23-why-typescript-chose-gatsby/)) so we can enable TypeScript without a plugin.
+Coming from Golang background, writing codes without type is somehow uncomfortable. Therefore, I was looking for TypeScript support in Gatsby to accommodate that and [`gatsby-plugin-typescript`](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/) is one of them. However, without core integration, the plugin has a couple of limitations like [this issue](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/#caveats). Fortunately, Gatsby is recently developing native support for Typescript ([link](https://www.gatsbyjs.org/blog/2020-01-23-why-typescript-chose-gatsby/)) to allow us to enable TypeScript easier without a plugin.
 
 ## Create a new site
 

@@ -70,12 +70,10 @@ copied from prismjs/themes/prism.css
  .token.doctype,
  .token.cdata {
    color: var(--color-light-gray);
-   background: var(--color-surface);
  }
 
  .token.punctuation {
    color: var(--color-gray);
-   background: var(--color-surface);
  }
 
  .token.namespace {
@@ -90,7 +88,6 @@ copied from prismjs/themes/prism.css
  .token.symbol,
  .token.deleted {
    color: var(--color-pink);
-   background: var(--color-surface);
  }
 
  .token.selector,
@@ -100,7 +97,6 @@ copied from prismjs/themes/prism.css
  .token.builtin,
  .token.inserted {
    color: var(--color-green);
-   background: var(--color-surface);
  }
 
  .token.operator,
@@ -109,27 +105,23 @@ copied from prismjs/themes/prism.css
  .language-css .token.string,
  .style .token.string {
    color: var(--color-orange);
-   background: var(--color-surface);
  }
 
  .token.atrule,
  .token.attr-value,
  .token.keyword {
    color: var(--color-blue);
-   background: var(--color-surface);
  }
 
  .token.function,
  .token.class-name {
    color: var(--color-red);
-   background: var(--color-surface);
  }
 
  .token.regex,
  .token.important,
  .token.variable {
    color: var( --color-yellow);
-   background: var(--color-surface);
  }
 
  .token.important,
