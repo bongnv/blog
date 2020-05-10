@@ -9,7 +9,11 @@ const DarkModeSwitcher: FC = () => {
     setDarkMode(!darkMode);
   };
 
-  return <button onClick={handleClick}>{darkMode ? <Moon /> : <Sun />}</button>;
+  return (
+    <button className="focus:outline-none" onClick={handleClick}>
+      {darkMode ? <Moon /> : <Sun />}
+    </button>
+  );
 };
 
 export default DarkModeSwitcher;

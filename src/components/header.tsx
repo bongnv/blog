@@ -13,6 +13,19 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ siteMetadata }: HeaderProps) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const handleClick = (): void => setMenuVisible(!menuVisible);
+  React.useEffect(() => {
+    if (menuVisible) {
+      const eventHandler = () => setMenuVisible(false);
+      window.addEventListener("click", eventHandler);
+      window.addEventListener("scroll", eventHandler);
+
+      return () => {
+        window.removeEventListener("click", eventHandler);
+        window.removeEventListener("scroll", eventHandler);
+      };
+    }
+  }, [menuVisible]);
+
   const BtnIcon = menuVisible ? X : Menu;
   return (
     <header className="fixed top-0 z-10 w-screen bg-background font-display">

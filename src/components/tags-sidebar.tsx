@@ -12,7 +12,10 @@ const TagsSideBar: React.FC<TagsSideBar> = ({
 }: TagsSideBar) => {
   const result = useStaticQuery(graphql`
     query {
-      tagsGroup: allMarkdownRemark(limit: 2000) {
+      tagsGroup: allMarkdownRemark(
+        filter: { fields: { isBlog: { eq: true }, isPublished: { eq: true } } }
+        limit: 2000
+      ) {
         group(field: frontmatter___tags) {
           fieldValue
           totalCount
