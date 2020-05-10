@@ -10,11 +10,20 @@ import PropTypes from "prop-types";
 
 import "./src/styles/index.css";
 import { ThemeProvider } from "./src/context/theme-context";
+import Layout from "./src/components/layout";
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
 );
 
 wrapRootElement.propTypes = {
+  element: PropTypes.node.isRequired,
+};
+
+export const wrapPageElement = ({ element }) => {
+  return <Layout>{element}</Layout>;
+};
+
+wrapPageElement.propTypes = {
   element: PropTypes.node.isRequired,
 };

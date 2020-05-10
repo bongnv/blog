@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Post } from "@/types";
-import Layout from "@/components/layout";
 import PostCard from "@/components/post-card";
 import SEO from "@/components/seo";
 import TagsSideBar from "@/components/tags-sidebar";
@@ -22,7 +21,7 @@ const PostList: React.FC<PostListProps> = ({
   edges,
 }: PostListProps) => {
   return (
-    <Layout>
+    <>
       <SEO title={title} description={description} />
       <div className="hidden xl:block w-64">
         <TagsSideBar currentTag={tag} />
@@ -39,7 +38,7 @@ const PostList: React.FC<PostListProps> = ({
         ))}
       </main>
       <div className="hidden xl:block w-64" />
-    </Layout>
+    </>
   );
 };
 

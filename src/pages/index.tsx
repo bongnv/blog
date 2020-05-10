@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { graphql } from "gatsby";
 
-import Layout from "@/components/layout";
 import SEO from "@/components/seo";
 import { Post } from "@/types";
 
@@ -15,13 +14,13 @@ const IndexPage: FC<IndexPageProps> = ({ data }: IndexPageProps) => {
   const post = data.markdownRemark;
 
   return (
-    <Layout>
+    <>
       <SEO title="About" />
       <main
         className="w-full max-w-2xl content"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
-    </Layout>
+    </>
   );
 };
 

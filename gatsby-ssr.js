@@ -6,6 +6,8 @@
 
 // You can delete this file if you're not using it
 import React from "react";
+import Layout from "./src/components/layout";
+import PropTypes from "prop-types";
 
 export const onRenderBody = ({ setHeadComponents }) => {
   const script = `
@@ -19,4 +21,12 @@ export const onRenderBody = ({ setHeadComponents }) => {
       dangerouslySetInnerHTML={{ __html: script }}
     />,
   ]);
+};
+
+export const wrapPageElement = ({ element }) => {
+  return <Layout>{element}</Layout>;
+};
+
+wrapPageElement.propTypes = {
+  element: PropTypes.node.isRequired,
 };

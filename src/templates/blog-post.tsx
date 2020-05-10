@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { graphql } from "gatsby";
 
-import Layout from "@/components/layout";
 import PostMeta from "@/components/post-meta";
 import SideBar from "@/components/sidebar";
 import SEO from "@/components/seo";
@@ -22,7 +21,7 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
   const tags = post.frontmatter.tags || [];
   const showSidebar = headings && headings.length > 0;
   return (
-    <Layout>
+    <>
       <SEO title={post.frontmatter.title} />
       {showSidebar && <div className="hidden xl:block w-64" />}
       <div className="w-full max-w-2xl">
@@ -45,7 +44,7 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
           <SideBar headings={headings} />
         </aside>
       )}
-    </Layout>
+    </>
   );
 };
 
