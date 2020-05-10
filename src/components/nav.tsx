@@ -11,14 +11,18 @@ interface NavProps {
 }
 
 const Nav: FC<NavProps> = ({ links }: NavProps) => (
-  <nav className="hidden sm:flex items-center font-medium">
-    <Link to="/" className="mr-2x" activeClassName="font-black text-primary">
+  <nav className="hidden sm:flex items-center">
+    <Link
+      to="/"
+      className="mr-2x font-medium"
+      activeClassName="font-bold text-primary"
+    >
       About
     </Link>
     <Link
       to="/blog/"
-      className="mr-2x"
-      activeClassName="font-black text-primary"
+      className="mr-2x font-medium"
+      activeClassName="font-bold text-primary"
     >
       Blog
     </Link>

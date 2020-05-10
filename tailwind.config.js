@@ -22,15 +22,8 @@ module.exports = {
         "4x": "4rem",
       },
       fontFamily: {
-        body: [
-          "Noto Serif",
-          "Georgia",
-          "Cambria",
-          "Times New Roman",
-          "Times",
-          "serif",
-        ],
-        display: ["Noto Sans", "Roboto", "Ubuntu"],
+        body: ["Roboto", "sans-serif"],
+        display: ["Roboto", "sans-serif"],
       },
     },
     container: {

@@ -11,17 +11,17 @@ interface MobileNavProps {
 }
 
 const MobileNav: FC<MobileNavProps> = ({ links }: MobileNavProps) => (
-  <nav className="flex flex-col justify-start px-1x border-b  border-divider shadow font-medium">
+  <nav className="flex flex-col justify-start px-1x border-b border-divider shadow">
     <Link
       to="/"
-      className="pl-.5x mt-1x"
+      className="pl-.5x mt-1x font-medium"
       activeClassName="font-bold text-primary"
     >
       About
     </Link>
     <Link
       to="/blog/"
-      className="pl-.5x mt-1x"
+      className="pl-.5x mt-1x font-medium"
       activeClassName="font-bold text-primary"
     >
       Blog

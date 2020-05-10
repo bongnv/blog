@@ -3,7 +3,7 @@
 }
 
 .content h1 {
-  @apply text-4xl my-2x font-extrabold font-display;
+  @apply text-4xl my-2x font-bold font-display;
 }
 
 .content h2 {
@@ -15,11 +15,11 @@
 }
 
 .content h4 {
-  @apply leading-6 text-lg mb-1x mt-6 font-semibold font-display;
+  @apply leading-6 text-lg mb-1x mt-6 font-medium font-display;
 }
 
 .content h5,
-h6 {
+.content h6 {
   @apply leading-6 text-lg mb-1x mt-6 font-medium font-display;
 }
 

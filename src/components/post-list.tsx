@@ -28,9 +28,7 @@ const PostList: React.FC<PostListProps> = ({
       </div>
       <main className="w-full max-w-2xl">
         <div className="text-center my-2x">
-          <h1 className="text-4xl mb-1x font-extrabold font-display">
-            {title}
-          </h1>
+          <h1 className="text-4xl mb-1x font-bold font-display">{title}</h1>
           {description && <p className="font-body">{description}</p>}
         </div>
         {edges.map(({ node }) => (

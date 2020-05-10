@@ -48,7 +48,7 @@ const SideBar: FC<SideBarProps> = ({ headings }: SideBarProps) => {
   useEffect(() => sideBarEffect(headings, setActiveAnchor), [headings]);
 
   return (
-    <div className="top-4x sticky font-display border-l  border-divider pl-1x mt-4x ml-1x">
+    <div className="top-4x sticky font-display border-l border-divider pl-1x mt-4x ml-1x">
       <h3 className="font-bold tracking-wide uppercase mb-.5x pb-.5x border-b border-divider">
         On this page
       </h3>
@@ -57,10 +57,10 @@ const SideBar: FC<SideBarProps> = ({ headings }: SideBarProps) => {
           <li key={heading.id}>
             <a
               className={classNames({
-                "flex text-sm transition transform hover:translate-x-1": true,
+                "flex text-sm transition transform duration-500 ease-in-out hover:translate-x-2": true,
                 "mt-1x": index > 0 && heading.depth === 2,
                 "mt-.5x": index === 0 || heading.depth !== 2,
-                "font-semibold": heading.depth === 2,
+                "font-medium": heading.depth === 2,
                 "font-bold text-primary": activeAnchor === heading.id,
                 "pl-1x": heading.depth === 3,
               })}
