@@ -126,4 +126,100 @@ const DarkModeSwitcher: FC = () => {
 ```
 Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites in server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after rendered.
 
-[React Context](https://reactjs.org/docs/context.html) then came into the picture.
+[React Context](https://reactjs.org/docs/context.html) then came into the picture. It allows us to have client-only codes in `gatsby-browser.js` and sends the data deep down to our `DarkModeSwitcher`. In detail, we will start with a new Context object to store whether it's in dark mode or not. I add `src/context/theme-mode.tsx` like:
+```tsx
+import React from "react";
+
+const LIGHTS_OUT = "lights-out";
+
+const getInitialDarkMode = (): boolean => {
+  const darkMode = window.localStorage.getItem(LIGHTS_OUT);
+  return darkMode === "true";
+};
+
+const defaultContext = {
+  darkMode: false,
+  setDarkMode: (_: boolean): void => {},
+};
+
+export const ThemeContext = React.createContext(defaultContext);
+
+interface ThemeProviderProps {
+  children: React.ReactNode;
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+  children,
+}: ThemeProviderProps) => {
+  const [darkMode, setDarkModeState] = React.useState(getInitialDarkMode());
+
+  const setDarkMode = (mode: boolean): void => {
+    setDarkModeState(mode);
+    document.documentElement.toggleAttribute(LIGHTS_OUT, mode);
+    window.localStorage.setItem(LIGHTS_OUT, mode ? "true" : "false");
+  };
+
+  return (
+    <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+```
+
+The Logic is very similar to our `DarkModeSwitcher` component. However, it introduces `getInitialDarkMode` to load information from `localStorage` and it uses that value as the initial state.
+
+As we can get dark mode information from React Context, `DarkModeSwitcher` becomes simpler:
+
+```tsx
+const DarkModeSwitcher: FC = () => {
+  const { darkMode, setDarkMode } = React.useContext(ThemeContext);
+  const handleClick = (): void => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <button className="focus:outline-none" onClick={handleClick}>
+      {darkMode ? <Moon /> : <Sun />}
+    </button>
+  );
+};
+```
+
+In order for `DarkModeSwitcher` to load the data from `ThemeContext`, I need to wrap the application inside the Context Provider which means adding below lines to `gatsby-browser.js`:
+```js
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider>{element}</ThemeProvider>
+);
+
+wrapRootElement.propTypes = {
+  element: PropTypes.node.isRequired,
+};
+```
+
+To wrap up, the website at this stage should have a button to switch from dark theme to light and vice versa. It is also able to store and load user preferences to and from `localStorage` for next visits.
+
+### Flickering on the first load
+
+Before going into the issue, here is how I tested the Gatsby site before production:
+```shell
+yarn build && yarn serve
+```
+Basically, it builds the site with production options and serves it under the default port 9000. Heading to `http://localhost:9000`, testing around, I found that the site flicker from the light theme to the dark theme on the first load. The reason is that the site was built without user's preferences and its default theme is the light theme. After loading from `localStorage`, it changes to the dark theme; hence, we see the site changes from the light theme to the dark theme very quickly.
+
+My fix would require some knowledge of Gatsby. The idea is to add a piece of script on top of pre-rendered HTML codes so it is guaranteed to run before rendering the site. The script loads data from `localStorage` and updates the HTML attribute to ensure the site is rendered with the proper theme. In order to achieve this in Gatsby, I use the API `onRenderBody` in `gatsby-ssr.js`. The codes would look like:
+```js
+export const onRenderBody = ({ setHeadComponents }) => {
+  const script = `
+  const LIGHTS_OUT = "lights-out";
+  const darkMode = window.localStorage.getItem(LIGHTS_OUT) === "true";
+  document.documentElement.toggleAttribute(LIGHTS_OUT, darkMode);
+  `;
+  return setHeadComponents([
+    <script
+      key={`dark-mode-script`}
+      dangerouslySetInnerHTML={{ __html: script }}
+    />,
+  ]);
+};
+```

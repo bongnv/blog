@@ -29,7 +29,7 @@ cd gatsby-site
 gatsby develop
 ```
 
-With the above command, Gatsby will start a hot-reloading development environment which is accessible by default at http://localhost:8000.
+With the above command, Gatsby will start a hot-reloading development environment that is accessible by default at http://localhost:8000.
 
 ## Add type checking
 
