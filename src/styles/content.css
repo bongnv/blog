@@ -1,0 +1,56 @@
+.content {
+  @apply font-body;
+}
+
+.content h1 {
+  @apply text-4xl my-2x font-extrabold font-display;
+}
+
+.content h2 {
+  @apply leading-8 text-2xl mb-1x mt-6 pb-2 font-bold font-display border-b border-divider;
+}
+
+.content h3 {
+  @apply leading-6 text-xl mb-1x mt-6 font-bold font-display;
+}
+
+.content h4 {
+  @apply leading-6 text-lg mb-1x mt-6 font-semibold font-display;
+}
+
+.content h5,
+h6 {
+  @apply leading-6 text-lg mb-1x mt-6 font-medium font-display;
+}
+
+.content p {
+  @apply leading-6 text-base mb-1x;
+}
+
+.content li {
+  @apply list-disc;
+}
+
+.content ul {
+  @apply pl-8 mb-1x list-disc;
+}
+
+.content a {
+  @apply text-primary;
+}
+
+.content a:hover {
+  @apply underline;
+}
+
+.content .heading-anchor {
+  @apply fill-current;
+}
+
+.content blockquote {
+  @apply px-1x border-l-4 border-primary mb-1x;
+}
+
+.content svg {
+  @apply inline-block;
+}

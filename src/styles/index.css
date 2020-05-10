@@ -3,5 +3,6 @@
 @tailwind utilities;
 @import "./vars.css";
 @import "./base.css";
+@import "./content.css";
 @import "./effects.css";
 @import "./prism.css";

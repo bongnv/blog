@@ -1,33 +1,33 @@
 :root {
-  --color-background: theme('colors.gray.100');
-  --color-foreground: theme('colors.gray.900');
-  --color-primary: theme('colors.indigo.600');
-  --color-surface: theme('colors.gray.200');
-  --color-inline-surface: theme('colors.gray.300');
-  --color-divider: theme('colors.gray.300');
-  --color-red: theme('colors.red.700');
-  --color-pink: theme('colors.pink.700');
-  --color-green: theme('colors.green.700');
-  --color-gray: theme('colors.gray.700');
-  --color-orange: theme('colors.orange.700');
-  --color-light-gray: theme('colors.gray.500');
-  --color-blue: theme('colors.blue.700');
-  --color-yellow: theme('colors.yellow.700');
+  --color-background: theme("colors.gray.100");
+  --color-foreground: theme("colors.gray.900");
+  --color-primary: theme("colors.indigo.600");
+  --color-surface: theme("colors.gray.200");
+  --color-inline-surface: theme("colors.gray.300");
+  --color-divider: theme("colors.gray.300");
+  --color-red: theme("colors.red.700");
+  --color-pink: theme("colors.pink.700");
+  --color-green: theme("colors.green.700");
+  --color-gray: theme("colors.gray.700");
+  --color-orange: theme("colors.orange.700");
+  --color-light-gray: theme("colors.gray.500");
+  --color-blue: theme("colors.blue.700");
+  --color-yellow: theme("colors.yellow.700");
 }
 
 html[lights-out] {
-  --color-background: theme('colors.gray.900');
-  --color-foreground: theme('colors.gray.100');
-  --color-primary: theme('colors.indigo.400');
-  --color-surface: theme('colors.gray.800');
-  --color-inline-surface: theme('colors.gray.700');
-  --color-divider: theme('colors.gray.700');
-  --color-red: theme('colors.red.300');
-  --color-pink: theme('colors.pink.300');
-  --color-green: theme('colors.green.300');
-  --color-gray: theme('colors.gray.300');
-  --color-orange: theme('colors.orange.300');
-  --color-light-gray: theme('colors.gray.500');
-  --color-blue: theme('colors.blue.300');
-  --color-yellow: theme('colors.yellow.300');
+  --color-background: theme("colors.gray.900");
+  --color-foreground: theme("colors.gray.100");
+  --color-primary: theme("colors.indigo.400");
+  --color-surface: theme("colors.gray.800");
+  --color-inline-surface: theme("colors.gray.700");
+  --color-divider: theme("colors.gray.700");
+  --color-red: theme("colors.red.300");
+  --color-pink: theme("colors.pink.300");
+  --color-green: theme("colors.green.300");
+  --color-gray: theme("colors.gray.300");
+  --color-orange: theme("colors.orange.300");
+  --color-light-gray: theme("colors.gray.500");
+  --color-blue: theme("colors.blue.300");
+  --color-yellow: theme("colors.yellow.300");
 }

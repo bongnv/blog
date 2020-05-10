@@ -46,52 +46,55 @@ This simple component uses the function `useState` which is a [React Hook](https
 ### Adding CSS
 
 My website uses [Tailwindcss](https://tailwindcss.com/) which has no support for dark theme out of the box. Therefore, I need to create a CSS file to have different color schemes for light and dark variants. The `vars.css` would look like:
+
 ```css
 :root {
-  --color-background: theme('colors.gray.100');
-  --color-foreground: theme('colors.gray.900');
-  --color-primary: theme('colors.indigo.600');
-  --color-surface: theme('colors.gray.200');
-  --color-inline-surface: theme('colors.gray.300');
-  --color-divider: theme('colors.gray.300');
-  --color-red: theme('colors.red.700');
-  --color-pink: theme('colors.pink.700');
-  --color-green: theme('colors.green.700');
-  --color-gray: theme('colors.gray.700');
-  --color-orange: theme('colors.orange.700');
-  --color-blue: theme('colors.blue.700');
-  --color-yellow: theme('colors.yellow.700');
+  --color-background: theme("colors.gray.100");
+  --color-foreground: theme("colors.gray.900");
+  --color-primary: theme("colors.indigo.600");
+  --color-surface: theme("colors.gray.200");
+  --color-inline-surface: theme("colors.gray.300");
+  --color-divider: theme("colors.gray.300");
+  --color-red: theme("colors.red.700");
+  --color-pink: theme("colors.pink.700");
+  --color-green: theme("colors.green.700");
+  --color-gray: theme("colors.gray.700");
+  --color-orange: theme("colors.orange.700");
+  --color-blue: theme("colors.blue.700");
+  --color-yellow: theme("colors.yellow.700");
 }
 
 html[lights-out] {
-  --color-background: theme('colors.gray.900');
-  --color-foreground: theme('colors.gray.100');
-  --color-primary: theme('colors.indigo.400');
-  --color-surface: theme('colors.gray.800');
-  --color-inline-surface: theme('colors.gray.700');
-  --color-divider: theme('colors.gray.700');
-  --color-red: theme('colors.red.300');
-  --color-pink: theme('colors.pink.300');
-  --color-green: theme('colors.green.300');
-  --color-gray: theme('colors.gray.300');
-  --color-orange: theme('colors.orange.300');
-  --color-blue: theme('colors.blue.300');
-  --color-yellow: theme('colors.yellow.300');
+  --color-background: theme("colors.gray.900");
+  --color-foreground: theme("colors.gray.100");
+  --color-primary: theme("colors.indigo.400");
+  --color-surface: theme("colors.gray.800");
+  --color-inline-surface: theme("colors.gray.700");
+  --color-divider: theme("colors.gray.700");
+  --color-red: theme("colors.red.300");
+  --color-pink: theme("colors.pink.300");
+  --color-green: theme("colors.green.300");
+  --color-gray: theme("colors.gray.300");
+  --color-orange: theme("colors.orange.300");
+  --color-blue: theme("colors.blue.300");
+  --color-yellow: theme("colors.yellow.300");
 }
 ```
 
 It has a light color scheme by default and a dark color scheme with the attribute `lights-out`. It means we only need to toggle the HTML attribute to switch from light theme and dark theme. To present that in codes, only one additional line of codes in the function `DarkModeSwitcher` is needed like below:
-```tsx
-  const LIGHTS_OUT = "lights-out";
 
-  const handleClick = (): void => {
-    const newMode = !darkMode;
-    document.documentElement.toggleAttribute(LIGHTS_OUT, newMode); // new codes
-    setDarkMode(newMode);
-  };
+```tsx
+const LIGHTS_OUT = "lights-out";
+
+const handleClick = (): void => {
+  const newMode = !darkMode;
+  document.documentElement.toggleAttribute(LIGHTS_OUT, newMode); // new codes
+  setDarkMode(newMode);
+};
 ```
 
 Having those variables is not enough, we need to use them in our codes. Here is an example of how to use them:
+
 ```css
 * {
   background-color: var(--color-background);
@@ -99,7 +102,7 @@ Having those variables is not enough, we need to use them in our codes. Here is 
 }
 ```
 
-For those who may wonder, I use the default color palette from [TailwindCSS](https://tailwindcss.com/docs/customizing-colors#default-color-palette). Also, I use light gray and dark gray instead of  `white` and `black` following [this guideline](https://material.io/design/color/dark-theme.html#properties).
+For those who may wonder, I use the default color palette from [TailwindCSS](https://tailwindcss.com/docs/customizing-colors#default-color-palette). Also, I use light gray and dark gray instead of `white` and `black` following [this guideline](https://material.io/design/color/dark-theme.html#properties).
 
 ## Storing user preference
 
@@ -108,8 +111,9 @@ For storage solution, I use `localStorage` because of its simplicity. Then there
 ### Storing to localStorage
 
 This is the easier part. I only need to add one line of codes to the function `handleClick`:
+
 ```tsx
-    window.localStorage.setItem(LIGHTS_OUT, mode ? "true" : "false");
+window.localStorage.setItem(LIGHTS_OUT, mode ? "true" : "false");
 ```
 
 Every time users click on the switch, we store the preference to `localStorage`.
@@ -117,16 +121,19 @@ Every time users click on the switch, we store the preference to `localStorage`.
 ### Loading from localStorage
 
 Loading is trickier. Initially, I thought we only need these lines in the component constructor:
+
 ```tsx
 const DarkModeSwitcher: FC = () => {
   const storedDarkMode = window.localStorage.getItem(LIGHTS_OUT) === "true"; // new codes
   const [darkMode, setDarkMode] = React.useState(storedDarkMode);
   // other codes
-}
+};
 ```
+
 Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites in server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after rendered.
 
 [React Context](https://reactjs.org/docs/context.html) then came into the picture. It allows us to have client-only codes in `gatsby-browser.js` and sends the data deep down to our `DarkModeSwitcher`. In detail, we will start with a new Context object to store whether it's in dark mode or not. I add `src/context/theme-mode.tsx` like:
+
 ```tsx
 import React from "react";
 
@@ -187,6 +194,7 @@ const DarkModeSwitcher: FC = () => {
 ```
 
 In order for `DarkModeSwitcher` to load the data from `ThemeContext`, I need to wrap the application inside the Context Provider which means adding below lines to `gatsby-browser.js`:
+
 ```js
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
@@ -202,12 +210,15 @@ To wrap up, the website at this stage should have a button to switch from dark t
 ### Flickering on the first load
 
 Before going into the issue, here is how I tested the Gatsby site before production:
+
 ```shell
 yarn build && yarn serve
 ```
+
 Basically, it builds the site with production options and serves it under the default port 9000. Heading to `http://localhost:9000`, testing around, I found that the site flicker from the light theme to the dark theme on the first load. The reason is that the site was built without user's preferences and its default theme is the light theme. After loading from `localStorage`, it changes to the dark theme; hence, we see the site changes from the light theme to the dark theme very quickly.
 
 My fix would require some knowledge of Gatsby. The idea is to add a piece of script on top of pre-rendered HTML codes so it is guaranteed to run before rendering the site. The script loads data from `localStorage` and updates the HTML attribute to ensure the site is rendered with the proper theme. In order to achieve this in Gatsby, I use the API `onRenderBody` in `gatsby-ssr.js`. The codes would look like:
+
 ```js
 export const onRenderBody = ({ setHeadComponents }) => {
   const script = `

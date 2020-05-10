@@ -25,7 +25,7 @@
     "prismjs": "^1.20.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-helmet": "^6.0.0",
     "tailwindcss": "^1.4.6"
@@ -55,7 +55,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "lint": "eslint --ext .js,.ts,.tsx --ignore-path .gitignore --fix .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "type-check": "tsc --noEmit",

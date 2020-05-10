@@ -1,17 +1,21 @@
 import React, { FC } from "react";
 import { Moon, Sun } from "react-feather";
 
-import { ThemeContext } from "@/context/theme-context";
+const LIGHTS_OUT = "lights-out";
 
 const DarkModeSwitcher: FC = () => {
-  const { darkMode, setDarkMode } = React.useContext(ThemeContext);
   const handleClick = (): void => {
-    setDarkMode(!darkMode);
+    document.documentElement.toggleAttribute(LIGHTS_OUT);
   };
 
   return (
-    <button className="focus:outline-none" onClick={handleClick}>
-      {darkMode ? <Moon /> : <Sun />}
+    <button
+      className="focus:outline-none"
+      onClick={handleClick}
+      aria-label="Dark Mode"
+    >
+      <Moon className="moon" />
+      <Sun className="sun" />
     </button>
   );
 };
