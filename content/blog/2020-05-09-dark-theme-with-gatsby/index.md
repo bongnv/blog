@@ -16,12 +16,14 @@ I'd been seeing a couple of blogs with dark theme support. The feature can be ea
 
 That sounds simple, right? No, it's not at least for me.
 
-## Adding a switch
+## Building layout
+
+### Adding a switch
 
 This is the easiest part first so I started with it. Thanks to [react-feather](https://github.com/feathericons/react-feather) I have two cool icons: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 and <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>. Next, I create a wrapper of them for reusing it in both the desktop navigation menu and the mobile navigation menu:
 
-```jsx
+```tsx
 const DarkModeSwitcher: FC = () => {
   const [darkMode, setDarkMode] = React.useState(false);
   const handleClick = (): void => {
@@ -41,7 +43,7 @@ export default DarkModeSwitcher;
 
 This simple component uses the function `useState` which is a [React Hook](https://reactjs.org/docs/hooks-intro.html) to change the icon back and forth when there is a click. We will add the functionality to change the color theme later.
 
-## Adding CSS
+### Adding CSS
 
 My website uses [Tailwindcss](https://tailwindcss.com/) which has no support for dark theme out of the box. Therefore, I need to create a CSS file to have different color schemes for light and dark variants. The `vars.css` would look like:
 ```css
@@ -79,12 +81,12 @@ html[lights-out] {
 ```
 
 It has a light color scheme by default and a dark color scheme with the attribute `lights-out`. It means we only need to toggle the HTML attribute to switch from light theme and dark theme. To present that in codes, only one additional line of codes in the function `DarkModeSwitcher` is needed like below:
-```jsx
+```tsx
   const LIGHTS_OUT = "lights-out";
 
   const handleClick = (): void => {
     const newMode = !darkMode;
-    document.documentElement.toggleAttribute(LIGHTS_OUT, newMode);
+    document.documentElement.toggleAttribute(LIGHTS_OUT, newMode); // new codes
     setDarkMode(newMode);
   };
 ```
@@ -101,8 +103,27 @@ For those who may wonder, I use the default color palette from [TailwindCSS](htt
 
 ## Storing user preference
 
-For storage solution, I use `localStorage` because of its simplicity. Then there are two parts of the problem which are storing to `localStorage` and loading from `localStorage`.
+For storage solution, I use `localStorage` because of its simplicity. Then there are two parts of the problem left which are storing to `localStorage` and loading from `localStorage`.
 
 ### Storing to localStorage
 
+This is the easier part. I only need to add one line of codes to the function `handleClick`:
+```tsx
+    window.localStorage.setItem(LIGHTS_OUT, mode ? "true" : "false");
+```
+
+Every time users click on the switch, we store the preference to `localStorage`.
+
 ### Loading from localStorage
+
+Loading is trickier. Initially, I thought we only need these lines in the component constructor:
+```tsx
+const DarkModeSwitcher: FC = () => {
+  const storedDarkMode = window.localStorage.getItem(LIGHTS_OUT) === "true"; // new codes
+  const [darkMode, setDarkMode] = React.useState(storedDarkMode);
+  // other codes
+}
+```
+Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites in server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after rendered.
+
+[React Context](https://reactjs.org/docs/context.html) then came into the picture.
