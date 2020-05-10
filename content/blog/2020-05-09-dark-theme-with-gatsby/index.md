@@ -234,3 +234,53 @@ export const onRenderBody = ({ setHeadComponents }) => {
   ]);
 };
 ```
+
+Until now, the solution is complete. There is a switcher in order to turn the dark mode on and off. And the site is loaded with saved preference in local storage for next visit. And most importantly, there is no flickering between the light theme and the dark them when users open the site.
+
+## Reactive CSS
+
+The above approach gives give us a bunch of knowledge in React including `useState`, `useEffect` hooks and Context. However, there is a simpler approach by using CSS and I call it reactive CSS. Instead of maintain a React state, we use CSS to render the switcher properly:
+```tsx
+  return (
+    <button
+      onClick={handleClick}
+      aria-label="Dark Mode"
+    >
+      <Moon className="moon" />
+      <Sun className="sun" />
+    </button>
+  );
+```
+and its style is defined in css file:
+```css
+html[lights-out] .sun {
+  @apply hidden;
+}
+
+html[lights-out] .moon {
+  @apply block;
+}
+
+.moon {
+  @apply hidden;
+}
+```
+As the result, `Moon` icon or `Sun` icon will be displayed based on whether there is `lights-out` attribute in the root html or not. We no longer need `ThemeContext` nor `wrapRootElement` api in `gatsby-browser.js`. And `DarkModeSwitcher` no longer require an internal state. Instead, it loads and updates the html attribute directly:
+```tsx
+const DarkModeSwitcher: FC = () => {
+  const handleClick = (): void => {
+    const newMode = document.documentElement.toggleAttribute(LIGHTS_OUT);
+    window.localStorage.setItem(LIGHTS_OUT, newMode ? "true" : "false");
+  };
+  return (
+    <button>
+    // codes
+    </button>
+  )
+}
+```
+Codes becomes much shorter, hence, easier to maintain.
+
+## Wrap up
+
+I've used quite amount of Reach knowledge as well Gatsby knowledge in order to implement the dark mode. At the end, the ultimate solution come out much simpler.
