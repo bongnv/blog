@@ -11,6 +11,7 @@ p,
 strong,
 body a,
 li,
+svg,
 svg * {
   @apply text-foreground;
 }

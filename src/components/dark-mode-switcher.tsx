@@ -5,7 +5,8 @@ const LIGHTS_OUT = "lights-out";
 
 const DarkModeSwitcher: FC = () => {
   const handleClick = (): void => {
-    document.documentElement.toggleAttribute(LIGHTS_OUT);
+    const newMode = document.documentElement.toggleAttribute(LIGHTS_OUT);
+    window.localStorage.setItem(LIGHTS_OUT, newMode ? "true" : "false");
   };
 
   return (
