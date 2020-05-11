@@ -57,7 +57,7 @@ const SideBar: FC<SideBarProps> = ({ headings }: SideBarProps) => {
           <li key={heading.id}>
             <a
               className={classNames({
-                "flex text-sm transition transform duration-500 ease-in-out hover:translate-x-2": true,
+                "flex text-sm transition-transform transform duration-500 ease-in-out hover:translate-x-2": true,
                 "mt-1x": index > 0 && heading.depth === 2,
                 "mt-.5x": index === 0 || heading.depth !== 2,
                 "font-medium": heading.depth === 2,
