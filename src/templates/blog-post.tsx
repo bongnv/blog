@@ -22,8 +22,11 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
   const showSidebar = headings && headings.length > 0;
   return (
     <>
-      <SEO title={post.frontmatter.title} />
-      {showSidebar && <div className="hidden xl:block w-64" />}
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+      />
+      {showSidebar && <div className="hidden xl:block w-64 flex-grow" />}
       <div className="w-full max-w-2xl">
         <main className="mb-2x">
           <h1 className="text-center text-4xl font-bold font-display mt-2x mb-1x">
@@ -40,7 +43,7 @@ const BlogPost: FC<BlogPostProps> = ({ data }: BlogPostProps) => {
         {tags.length > 0 && <TagsFooter tags={tags} />}
       </div>
       {showSidebar && (
-        <aside className="hidden xl:block w-64">
+        <aside className="hidden xl:block w-64 flex-grow">
           <SideBar headings={headings} />
         </aside>
       )}

@@ -1,11 +1,11 @@
 ---
 title: Enable dark theme in Gatsby
-date: 2020-05-09
-description: Dark theme is a cool feature but also the toughest problem for this website. This post introduces a simple but effective way to enable the dark theme in a Gatsby site after a while of experimenting.
+date: 2020-05-10
+description: A dark theme is a cool feature but also the toughest problem for my blog. This post shows how I implemented a dark theme and a much simpler and more effective solution that came out later.
 tags: ["react", "gatsby", "dark-theme", "tailwindcss"]
 ---
 
-Dark themes are designed to reduce the luminance emitted by device screens and to improve visual ergonomics by reducing eye strain. However, it is perhaps the most complicated part of building my blog. I, therefore, feel it would be helpful to write down my experience when implementing the feature.
+A dark theme is a cool feature to have for a website. It was designed to reduce the luminance emitted by device screens and to improve visual ergonomics by reducing eye strain. However, it is perhaps the most complicated part of building my blog. I, therefore, feel it would be helpful to write down my experience when implementing the feature.
 
 ## Requirements
 
@@ -45,7 +45,7 @@ This simple component uses the function `useState` which is a [React Hook](https
 
 ### Adding CSS
 
-My website uses [Tailwindcss](https://tailwindcss.com/) which has no support for dark theme out of the box. Therefore, I need to create a CSS file to have different color schemes for light and dark variants. The `vars.css` would look like:
+My website uses [TailwindCSS](https://tailwindcss.com/) which has no support for dark themes out of the box. Therefore, I need to create a CSS file to have different color schemes for light and dark variants. The `vars.css` would look like:
 
 ```css
 :root {
@@ -130,7 +130,7 @@ const DarkModeSwitcher: FC = () => {
 };
 ```
 
-Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites in server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after rendered.
+Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites on the server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after being rendered.
 
 [React Context](https://reactjs.org/docs/context.html) then came into the picture. It allows us to have client-only codes in `gatsby-browser.js` and sends the data deep down to our `DarkModeSwitcher`. In detail, we will start with a new Context object to store whether it's in dark mode or not. I add `src/context/theme-mode.tsx` like:
 
@@ -235,11 +235,12 @@ export const onRenderBody = ({ setHeadComponents }) => {
 };
 ```
 
-Until now, the solution is complete. There is a switcher in order to turn the dark mode on and off. And the site is loaded with saved preference in local storage for next visit. And most importantly, there is no flickering between the light theme and the dark them when users open the site.
+Until now, the solution is complete. There is a switcher in order to turn the dark mode on and off. And the site is loaded with saved preferences in local storage for next visit. And most importantly, there is no flickering between the light theme and the dark them when users open the site.
 
 ## Reactive CSS
 
-The above approach gives give us a bunch of knowledge in React including `useState`, `useEffect` hooks and Context. However, there is a simpler approach by using CSS and I call it reactive CSS. Instead of maintain a React state, we use CSS to render the switcher properly:
+The above solution works perfectly; however, I still find it a bit complicated and requires some knowledge on React & Gatsby. It motivated me to look for a simpler approach which is called `Reactive CSS`. Per my understanding, it means CSS is reactive so instead of maintain a React state, we use CSS to render the switcher:
+
 ```tsx
   return (
     <button
@@ -254,18 +255,18 @@ The above approach gives give us a bunch of knowledge in React including `useSta
 and its style is defined in css file:
 ```css
 html[lights-out] .sun {
-  @apply hidden;
+  display: none;
 }
 
 html[lights-out] .moon {
-  @apply block;
+  display: block;
 }
 
 .moon {
-  @apply hidden;
+  display: none;
 }
 ```
-As the result, `Moon` icon or `Sun` icon will be displayed based on whether there is `lights-out` attribute in the root html or not. We no longer need `ThemeContext` nor `wrapRootElement` api in `gatsby-browser.js`. And `DarkModeSwitcher` no longer require an internal state. Instead, it loads and updates the html attribute directly:
+As a result, `Moon` icon or `Sun` icon will be displayed based on whether there is a `lights-out` attribute in the root html or not. We no longer need `ThemeContext` nor the api `wrapRootElement` in `gatsby-browser.js`. Moreover, `DarkModeSwitcher` no longer requires an internal state. Instead, it loads and updates the html attribute directly:
 ```tsx
 const DarkModeSwitcher: FC = () => {
   const handleClick = (): void => {
@@ -279,8 +280,24 @@ const DarkModeSwitcher: FC = () => {
   )
 }
 ```
-Codes becomes much shorter, hence, easier to maintain.
+Codes now become much shorter, hence, easier to maintain.
 
 ## Wrap up
 
-I've used quite amount of Reach knowledge as well Gatsby knowledge in order to implement the dark mode. At the end, the ultimate solution come out much simpler.
+Two solutions were described in this post:
+
+* A solution with complicated techniques in React, Gatsby including: `useEffect` hooks, `ThemeContext` or `wrapRootElement` api in `gatsby-browser.js`.
+* Another simpler solution with mostly CSS.
+
+Both require to inject a piece of scripts before the body to select a proper theme for users. Both solutions are enough to meet the initial requirements. If you want extend it to select the dark mode based on the user's preferred  color scheme, you can extend the script like:
+```
+const mql = window.matchMedia('(prefers-color-scheme: dark)');
+const darkMode = mql.matches === true;
+```
+
+I learned a lot while implementing the dark theme for my blog. I eventually realize that I wouldn't need that knowledge because there is a simpler approach that requires CSS mostly. Such things happen normally, right? We often over-engineering a problem and it's why I believe we should always look for the best solution possible.
+
+I would like to give credit to these links that helped me to build my dark theme:
+- https://joshwcomeau.com/gatsby/dark-mode/
+- https://www.gatsbyjs.org/blog/2019-01-31-using-react-context-api-with-gatsby/
+- https://github.com/mrcrmn/docc

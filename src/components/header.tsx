@@ -15,11 +15,11 @@ const Header: FC<HeaderProps> = ({ siteMetadata }: HeaderProps) => {
   const handleClick = (): void => setMenuVisible(!menuVisible);
   React.useEffect(() => {
     if (menuVisible) {
-      const eventHandler = () => setMenuVisible(false);
+      const eventHandler = (): void => setMenuVisible(false);
       window.addEventListener("click", eventHandler);
       window.addEventListener("scroll", eventHandler);
 
-      return () => {
+      return (): void => {
         window.removeEventListener("click", eventHandler);
         window.removeEventListener("scroll", eventHandler);
       };

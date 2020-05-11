@@ -23,7 +23,7 @@ const PostList: React.FC<PostListProps> = ({
   return (
     <>
       <SEO title={title} description={description} />
-      <div className="hidden xl:block w-64">
+      <div className="hidden xl:block w-64 flex-grow">
         <TagsSideBar currentTag={tag} />
       </div>
       <main className="w-full max-w-2xl">
@@ -35,7 +35,7 @@ const PostList: React.FC<PostListProps> = ({
           <PostCard key={node.id} post={node} />
         ))}
       </main>
-      <div className="hidden xl:block w-64" />
+      <div className="hidden xl:block w-64 flex-grow" />
     </>
   );
 };
