@@ -1,8 +1,9 @@
 ---
-title: Enable dark theme in Gatsby
+title: Enable the dark theme in Gatsby
 date: 2020-05-10
 description: A dark theme is a cool feature but also the toughest problem for my blog. This post shows how I implemented a dark theme and a much simpler and more effective solution that came out later.
 tags: ["react", "gatsby", "dark-theme", "tailwindcss"]
+published: true
 ---
 
 A dark theme is a cool feature to have for a website. It was designed to reduce the luminance emitted by device screens and to improve visual ergonomics by reducing eye strain. However, it is perhaps the most complicated part of building my blog. I, therefore, feel it would be helpful to write down my experience when implementing the feature.
@@ -284,20 +285,22 @@ Codes now become much shorter, hence, easier to maintain.
 
 ## Wrap up
 
-Two solutions were described in this post:
+To summarize, two solutions were described in this post:
 
-* A solution with complicated techniques in React, Gatsby including: `useEffect` hooks, `ThemeContext` or `wrapRootElement` api in `gatsby-browser.js`.
+* One solution with complicated techniques in React, Gatsby including: `useEffect` hooks, `ThemeContext` or `wrapRootElement` api in `gatsby-browser.js`.
 * Another simpler solution with mostly CSS.
 
-Both require to inject a piece of scripts before the body to select a proper theme for users. Both solutions are enough to meet the initial requirements. If you want extend it to select the dark mode based on the user's preferred  color scheme, you can extend the script like:
+Both require to inject a piece of scripts before the body to select the proper theme for users. And if you want extend it to select the dark mode based on the user's preferred color scheme, you can extend the script like:
 ```
 const mql = window.matchMedia('(prefers-color-scheme: dark)');
 const darkMode = mql.matches === true;
 ```
 
-I learned a lot while implementing the dark theme for my blog. I eventually realize that I wouldn't need that knowledge because there is a simpler approach that requires CSS mostly. Such things happen normally, right? We often over-engineering a problem and it's why I believe we should always look for the best solution possible.
+For myself, I learned a lot while implementing the dark theme. I eventually realize that I wouldn't need that knowledge because there is a simpler approach that requires CSS mostly. Such things happen normally, right? We often over-engineering a problem and it's why I believe we should always look for the best solution possible.
 
 I would like to give credit to these links that helped me to build my dark theme:
 - https://joshwcomeau.com/gatsby/dark-mode/
 - https://www.gatsbyjs.org/blog/2019-01-31-using-react-context-api-with-gatsby/
 - https://github.com/mrcrmn/docc
+
+And last but not least, I uploaded an example of codes for dark themes here https://github.com/bongnv/gatsby-dark-theme. Enjoy blogging!
