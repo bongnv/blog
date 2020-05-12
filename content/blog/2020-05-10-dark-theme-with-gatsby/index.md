@@ -6,14 +6,14 @@ tags: ["react", "gatsby", "dark-theme", "tailwindcss"]
 published: true
 ---
 
-A dark theme is a cool feature to have for a website. It was designed to reduce the luminance emitted by device screens and to improve visual ergonomics by reducing eye strain. However, it is perhaps the most complicated part of building my blog. I, therefore, feel it would be helpful to write down my experience when implementing the feature.
+A dark theme is a cool feature to have for a website. It was designed to reduce the luminance emitted by device screens and to improve visual ergonomics by reducing eye strain. However, it is perhaps the most complicated part of building my blog. I, therefore, feel that it would be helpful to write down my experience when implementing the feature.
 
 ## Requirements
 
-I'd been seeing a couple of blogs with dark theme support. The feature can be easily noticed by a switch to turn the dark theme on or off. Some of them even enable the dark theme as soon as I visit the site based on my machine setting. They are also able to store my preference so the website can render the proper theme when I revisit it. After that, I decided to implement the feature for my blog. It should:
+I have been viewing a couple of blogs with dark theme support. The feature can be easily noticed by a switch to turn the dark theme on or off. Some of them even enable the dark theme as soon as I visit the site based on my machine setting. They are also able to store my preference so the website can render the proper theme when I revisit it. Given that, I decided to implement the feature for my blog. It should:
 
 - Have a switch to turn the dark theme on or off.
-- Store user preferences so the blog can load it next time the user visits.
+- Store user preferences so the blog can show properly next time when the user visits.
 
 That sounds simple, right? No, it's not at least for me.
 
@@ -21,8 +21,8 @@ That sounds simple, right? No, it's not at least for me.
 
 ### Adding a switch
 
-This is the easiest part first so I started with it. Thanks to [react-feather](https://github.com/feathericons/react-feather) I have two cool icons: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-and <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>. Next, I create a wrapper of them for reusing it in both the desktop navigation menu and the mobile navigation menu:
+This is the easiest part so I started with it first. Thanks to [react-feather](https://github.com/feathericons/react-feather), I have two cool icons: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+and <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>. Next, I create a wrapper of them to reuse it in both the desktop navigation menu and the mobile navigation menu:
 
 ```tsx
 const DarkModeSwitcher: FC = () => {
@@ -42,7 +42,7 @@ const DarkModeSwitcher: FC = () => {
 export default DarkModeSwitcher;
 ```
 
-This simple component uses the function `useState` which is a [React Hook](https://reactjs.org/docs/hooks-intro.html) to change the icon back and forth when there is a click. We will add the functionality to change the color theme later.
+This simple component uses the function `useState` which is a [React Hook](https://reactjs.org/docs/hooks-intro.html) to change the icon back and forth when a user clicks. For the functionality to change the color theme, we will add later.
 
 ### Adding CSS
 
@@ -82,7 +82,7 @@ html[lights-out] {
 }
 ```
 
-It has a light color scheme by default and a dark color scheme with the attribute `lights-out`. It means we only need to toggle the HTML attribute to switch from light theme and dark theme. To present that in codes, only one additional line of codes in the function `DarkModeSwitcher` is needed like below:
+It has a light color scheme by default and a dark color scheme with the attribute `lights-out`. It means we only need to toggle the HTML attribute to switch from light theme and dark theme. To present the idea in codes, only one line of codes in the function `DarkModeSwitcher` is needed. It is like below:
 
 ```tsx
 const LIGHTS_OUT = "lights-out";
@@ -103,11 +103,11 @@ Having those variables is not enough, we need to use them in our codes. Here is 
 }
 ```
 
-For those who may wonder, I use the default color palette from [TailwindCSS](https://tailwindcss.com/docs/customizing-colors#default-color-palette). Also, I use light gray and dark gray instead of `white` and `black` following [this guideline](https://material.io/design/color/dark-theme.html#properties).
+For those who may wonder, I use the default color palette from [TailwindCSS](https://tailwindcss.com/docs/customizing-colors#default-color-palette). Also, I use light gray and dark gray instead of `white` and `black` to reduce eye strain following [this guideline](https://material.io/design/color/dark-theme.html#properties).
 
 ## Storing user preference
 
-For storage solution, I use `localStorage` because of its simplicity. Then there are two parts of the problem left which are storing to `localStorage` and loading from `localStorage`.
+For storage solution, I use `localStorage` because of its simplicity. Then there are two problem left which are storing to `localStorage` and loading from `localStorage`.
 
 ### Storing to localStorage
 
@@ -133,7 +133,7 @@ const DarkModeSwitcher: FC = () => {
 
 Then I realized that `gatsby build` would fail because `window` is not available when Gatsby render sites on the server side aka [SSR](https://www.gatsbyjs.org/docs/glossary/server-side-rendering/). We could move client-only codes to `componentDidMount` by using the [`useEffect`](https://reactjs.org/docs/hooks-effect.html) hook. However, it would lead to a flickering issue for those we use dark theme because the site is loaded with light theme initially and it changes to dark right after being rendered.
 
-[React Context](https://reactjs.org/docs/context.html) then came into the picture. It allows us to have client-only codes in `gatsby-browser.js` and sends the data deep down to our `DarkModeSwitcher`. In detail, we will start with a new Context object to store whether it's in dark mode or not. I add `src/context/theme-mode.tsx` like:
+[React Context](https://reactjs.org/docs/context.html) then came into the picture. It allows us to have client-only codes in `gatsby-browser.js` and sends the data deep down to our `DarkModeSwitcher`. In detail, I will start with a new Context object to store whether it's in dark mode or not. I add `src/context/theme-mode.tsx` like:
 
 ```tsx
 import React from "react";
@@ -206,7 +206,7 @@ wrapRootElement.propTypes = {
 };
 ```
 
-To wrap up, the website at this stage should have a button to switch from dark theme to light and vice versa. It is also able to store and load user preferences to and from `localStorage` for next visits.
+To wrap it up, the website at this stage should have a button to switch from dark theme to light and vice versa. It is also able to store and load user preferences to and from `localStorage` for next visits.
 
 ### Flickering on the first load
 
@@ -218,7 +218,7 @@ yarn build && yarn serve
 
 Basically, it builds the site with production options and serves it under the default port 9000. Heading to `http://localhost:9000`, testing around, I found that the site flicker from the light theme to the dark theme on the first load. The reason is that the site was built without user's preferences and its default theme is the light theme. After loading from `localStorage`, it changes to the dark theme; hence, we see the site changes from the light theme to the dark theme very quickly.
 
-My fix would require some knowledge of Gatsby. The idea is to add a piece of script on top of pre-rendered HTML codes so it is guaranteed to run before rendering the site. The script loads data from `localStorage` and updates the HTML attribute to ensure the site is rendered with the proper theme. In order to achieve this in Gatsby, I use the API `onRenderBody` in `gatsby-ssr.js`. The codes would look like:
+My fix would require some knowledge of Gatsby. The idea is to add a piece of script on top of pre-rendered HTML codes so it is guaranteed to run before rendering the site. The script loads data from `localStorage` and updates the HTML attribute to ensure the site is rendered with the proper theme. In order to achieve this, I use the API `onRenderBody` in `gatsby-ssr.js`. The codes would look like:
 
 ```js
 export const onRenderBody = ({ setHeadComponents }) => {
@@ -243,17 +243,16 @@ Until now, the solution is complete. There is a switcher in order to turn the da
 The above solution works perfectly; however, I still find it a bit complicated and requires some knowledge on React & Gatsby. It motivated me to look for a simpler approach which is called `Reactive CSS`. Per my understanding, it means CSS is reactive so instead of maintain a React state, we use CSS to render the switcher:
 
 ```tsx
-  return (
-    <button
-      onClick={handleClick}
-      aria-label="Dark Mode"
-    >
-      <Moon className="moon" />
-      <Sun className="sun" />
-    </button>
-  );
+return (
+  <button onClick={handleClick} aria-label="Dark Mode">
+    <Moon className="moon" />
+    <Sun className="sun" />
+  </button>
+);
 ```
+
 and its style is defined in css file:
+
 ```css
 html[lights-out] .sun {
   display: none;
@@ -267,40 +266,43 @@ html[lights-out] .moon {
   display: none;
 }
 ```
-As a result, `Moon` icon or `Sun` icon will be displayed based on whether there is a `lights-out` attribute in the root html or not. We no longer need `ThemeContext` nor the api `wrapRootElement` in `gatsby-browser.js`. Moreover, `DarkModeSwitcher` no longer requires an internal state. Instead, it loads and updates the html attribute directly:
+
+As a result, `Moon` icon or `Sun` icon will be displayed based on whether there is a `lights-out` attribute in the root html or not. We no longer need `ThemeContext` nor the api `wrapRootElement` in `gatsby-browser.js`. Moreover, `DarkModeSwitcher` no longer requires an internal state, and it instead loads and updates the html attribute directly:
+
 ```tsx
 const DarkModeSwitcher: FC = () => {
   const handleClick = (): void => {
     const newMode = document.documentElement.toggleAttribute(LIGHTS_OUT);
     window.localStorage.setItem(LIGHTS_OUT, newMode ? "true" : "false");
   };
-  return (
-    <button>
-    // codes
-    </button>
-  )
-}
+  return <button>/* codes */</button>;
+};
 ```
+
 Codes now become much shorter, hence, easier to maintain.
 
-## Wrap up
+## Summary
 
 To summarize, two solutions were described in this post:
 
-* One solution with complicated techniques in React, Gatsby including: `useEffect` hooks, `ThemeContext` or `wrapRootElement` api in `gatsby-browser.js`.
-* Another simpler solution with mostly CSS.
+- One solution with complicated techniques in React, Gatsby including: `useEffect` hooks, `ThemeContext` or `wrapRootElement` api in `gatsby-browser.js`.
+- Another simpler solution with mostly CSS.
 
-Both require to inject a piece of scripts before the body to select the proper theme for users. And if you want extend it to select the dark mode based on the user's preferred color scheme, you can extend the script like:
+Both require to inject a piece of scripts before the body to select the proper theme for users. And if you want extend it to select the dark mode based on the user's preferred color scheme, you can add these lines:
+
 ```
 const mql = window.matchMedia('(prefers-color-scheme: dark)');
 const darkMode = mql.matches === true;
 ```
 
+For an example of codes for dark themes, you can check out here https://github.com/bongnv/gatsby-dark-theme.
+
 For myself, I learned a lot while implementing the dark theme. I eventually realize that I wouldn't need that knowledge because there is a simpler approach that requires CSS mostly. Such things happen normally, right? We often over-engineering a problem and it's why I believe we should always look for the best solution possible.
 
-I would like to give credit to these links that helped me to build my dark theme:
+I would like to give credit to these posts that helped me to build my dark theme:
+
 - https://joshwcomeau.com/gatsby/dark-mode/
 - https://www.gatsbyjs.org/blog/2019-01-31-using-react-context-api-with-gatsby/
 - https://github.com/mrcrmn/docc
 
-And last but not least, I uploaded an example of codes for dark themes here https://github.com/bongnv/gatsby-dark-theme. Enjoy blogging!
+Enjoy blogging!
