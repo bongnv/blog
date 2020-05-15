@@ -1,6 +1,7 @@
 ---
 title: Debloat my Huawei P30 Pro
 date: 2020-05-15
+published: true
 tags: ["huawei", "hack"]
 ---
 
