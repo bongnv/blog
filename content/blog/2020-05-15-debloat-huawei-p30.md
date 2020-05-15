@@ -1,10 +1,10 @@
 ---
 title: Debloat my Huawei P30 Pro
 date: 2020-05-15
-description: This is more like a note on how I debloated my Huawei P30 Pro than a technical post. It also worked for Mate 20 so I assume it works for Mate & P series and probably Honor series.
-published: true
 tags: ["huawei", "hack"]
 ---
+
+This is more like a note on how I debloated my Huawei P30 Pro than a technical post. It also worked for Mate 20 so I assume it works for Mate & P series and probably Honor series.
 
 Before we start, please make sure that the device is connected to your laptop/computer. You can run the below command to verify it:
 ```shell
